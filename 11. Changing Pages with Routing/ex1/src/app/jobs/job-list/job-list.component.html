@@ -1,0 +1,26 @@
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Company</th>
+        <th scope="col">Place</th>
+        <th scope="col">Time</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let element of jobService.jobs; let i = index">
+        <!-- <th scope="row">{{i+1}}</th>  -->
+        <!-- <td >{{element.id[i+1]}}</td> -->
+        <td (click)="onclick(element.id)">{{element.id}}</td>
+        <td (click)="onclick(element.id)">{{element.title}}</td>
+        <td (click)="onclick(element.id)">{{element.Company}}</td>
+        <td (click)="onclick(element.id)">{{element.Place}}</td>
+        <td (click)="onclick(element.id)">{{element.Time}}</td>
+        <td ><a (click)="onEdit(element.id)">Edit</a></td>
+      </tr>
+    
+    </tbody>
+  </table>

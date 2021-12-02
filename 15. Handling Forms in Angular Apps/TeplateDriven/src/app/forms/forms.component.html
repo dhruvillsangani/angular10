@@ -1,0 +1,52 @@
+<form #contactForm="ngForm" (ngSubmit)="onsubmit(contactForm.value)">
+ 
+  <p>
+    <label for="username">UserName</label>
+    <input type="text" name="username" ngModel  required pattern="^[a-zA-Z]+$" username  #username="ngModel">
+
+  </p>
+  <span class="help-block" *ngIf="!username?.valid && (username?.dirty || username?.touched)">!!Enter valid Username</span>
+ 
+  <p>
+    <label for="company">Company</label>
+    <input type="text" name="company" ngModel  required  company  #company="ngModel">
+    <span class="help-block" *ngIf="!company?.valid && (company?.dirty || company?.touched)">!!Enter valid Company</span>
+  </p>
+ 
+  <label for="cars">City:</label>
+
+  <select name="area" id="area" ngModel required area #area = "ngModel" >
+    <option value="Rajkot"  >Rajkot</option>
+    <option value="Jamnagar">Jamnagar</option>
+    <option value="Surat">Surat</option>
+  </select>
+  <span class="help-block" *ngIf="!area?.valid && (area?.dirty || area?.touched)">!!Enter valid option</span>
+
+  <p>
+    <label for="gender">Geneder</label>
+    <input type="radio" value="male" name="gender"   ngModel  [(ngModel)]="gender"> Male
+    <input type="radio" value="female" name="gender" ngModel> Female
+    
+  </p>
+
+  <p>
+    <label for="isnewtocompany">IsNewToCompany</label>
+    <input type="radio" value="Yes" name="isnewtocompany" ngModel  [(ngModel)]="isnewtocompany">Yes
+    <input type="radio" value="No" name="isnewtocompany" ngModel > No
+  </p>
+ 
+ 
+
+  <p>
+    <label for="mno">Mobile No</label>
+    <input type="text" name="mno"  ngModel required mno  #mno="ngModel"> 
+
+  </p>
+  <span class="help-block" *ngIf="!mno?.valid && (mno?.dirty || mno?.touched)">!!Enter valid number</span>
+
+ 
+
+    <button type="submit" [disabled]="!contactForm.valid">Submit</button>
+  
+  
+</form>

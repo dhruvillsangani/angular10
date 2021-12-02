@@ -1,0 +1,12 @@
+
+    <div class="form-group">
+      <label for="studentname1"  >Student Name:</label>
+      <input type="text" class="form-control" #sname>
+    </div>
+    <div class="form-group">
+      <label for="school1" >  School: </label>
+       <input type="text" class="form-control"  #school>
+    </div>
+   
+    <button (click)="onSubmitted(sname.value,school.value)" class="btn btn-default">Submit</button>
+

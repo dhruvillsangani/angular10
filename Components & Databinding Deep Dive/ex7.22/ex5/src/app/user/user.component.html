@@ -1,0 +1,13 @@
+
+<!-- First-name: <input type="text"    [(ngModel)] ="fname"> -->
+First-name: <input type="text"    #inputele>
+Family-name:<input type="text"    #fele>
+Country:    <input type="text"    [(ngModel)] ="cname">
+<br>
+<div>{{inputele.value}}</div>
+
+<button (click)="userCreated(inputele)">Submit</button>
+
+<!-- <p>{{fname}}</p> -->
+
+

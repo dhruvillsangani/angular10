@@ -1,0 +1,17 @@
+
+
+<div class="form-group" >
+    <label for="studentname1">Title:</label>
+    <input type="text" class="form-control" #title value="{{job.title}}">
+  </div>
+  <div class="form-group">
+    <label for="school1" >Company: </label>
+     <input type="text" class="form-control" #company value="{{job.Company}}" >
+     
+  </div>
+  <div class="form-group">
+    <label for="school1" >Place: </label>
+    <input type="text" class="form-control" #place value="{{job.Place}}" >
+  </div> 
+  
+   <button class="btn btn-primary" (click)="postJob(title.value,company.value,place.value)">Submit</button>

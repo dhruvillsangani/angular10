@@ -1,0 +1,19 @@
+<!-- on the top must be two-button one to show/hide job-list and  -->
+<!-- second to post-job -->
+
+
+<div class="form-group">
+    <label for="studentname1">Title:</label>
+    <input type="text" class="form-control" #title>
+  </div>
+  <div class="form-group">
+    <label for="school1" >Company: </label>
+     <input type="text" class="form-control"  #company>
+     
+  </div>
+  <div class="form-group">
+    <label for="school1" >Place: </label>
+    <input type="text" class="form-control"  #place>
+  </div>
+  
+  <button class="btn btn-primary" (click)="postJob(title.value,company.value,place.value)">Submit</button>

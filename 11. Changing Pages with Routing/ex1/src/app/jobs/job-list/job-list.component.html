@@ -1,4 +1,5 @@
-
+<button class="btn btn-primary"  (click)="div1Function()" >show/hide Job</button>
+<div *ngIf="isShown">
 <table class="table">
     <thead>
       <tr>
@@ -24,3 +25,5 @@
     
     </tbody>
   </table>
+
+</div>

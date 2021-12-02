@@ -12,5 +12,9 @@ export class JobsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  div1Function() {
+     
+
+  }
 
 }

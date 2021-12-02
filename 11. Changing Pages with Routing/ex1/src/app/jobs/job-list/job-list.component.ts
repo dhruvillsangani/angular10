@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
+  isShown: boolean = true ; 
   
 
   constructor(public jobService:jobService,private router:Router,
@@ -18,6 +19,10 @@ export class JobListComponent implements OnInit {
   ngOnInit(): void {
 
     
+  }
+  div1Function() {
+
+    this.isShown = ! this.isShown;
   }
   onclick(id:number){
 

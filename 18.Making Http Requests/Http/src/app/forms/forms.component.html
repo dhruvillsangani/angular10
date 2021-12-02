@@ -1,0 +1,107 @@
+     <div class="container">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+       <form [formGroup]="signupForm" (ngSubmit)="onsubmit()">
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        class="form-control"
+        formControlName='username'>
+        <span class="help-block" 
+         *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched">
+         
+           Enter Valid Username!
+        </span>
+    </div>
+  
+    <div class="form-group">
+      <label for="company">Company</label>
+      <input
+        type="text"
+        id="company"
+        class="form-control"
+        formControlName = 'company'>
+        <span class="help-block"
+        *ngIf="!signupForm.get('company').valid && signupForm.get('company').touched" >
+         
+           Enter Valid Username!
+        </span>
+    </div>
+
+
+
+   
+    <div class="form-group">   
+    <label for="area">Area</label>
+
+   <select name="area" id="area" formControlName = 'area'>
+   <option value="Rajkot">Rajkot</option>
+  <option value="jamnagar">Jamnagar</option>
+  <option value="Ahmedabad">Ahmedabad</option>
+</select>
+      </div>
+
+
+
+  Gender:  <div class="radio" *ngFor="let gender of genders">
+     <label> 
+        <input
+          type="radio"
+          formControlName= 'gender'
+          [value]="gender"> {{ gender }}
+      </label>
+    
+    </div>
+
+   IsNewToCompany <div class="radio" *ngFor="let newtocompany of isnewtocompany">
+        <label>
+          <input
+            type="radio"
+            formControlName= "newtocompany"
+            [value]="newtocompany">{{ newtocompany }}
+        </label>
+       
+      </div>
+
+      <div class="form-group">
+        <label for="mno">Mobile Number</label>
+        <input
+          type="text"
+          id="mno"
+          class="form-control"
+          formControlName='mno'>
+           <span class="help-block" 
+           *ngIf="!signupForm.get('mno').valid && signupForm.get('mno').touched">
+             Enter Valid mobile number!
+          </span> 
+      </div>
+
+
+    <button class="btn btn-primary" type="submit" [disabled]="!signupForm.valid">Submit</button>
+
+
+    
+  </form>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <button class="btn btn-primary" (click)="onFetchPosts()">
+        Fetch Posts
+      </button>
+      |
+      <button
+        class="btn btn-danger"
+   
+        (click)="onClearPosts()"
+      >
+        Clear Posts
+      </button>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div> 

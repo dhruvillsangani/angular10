@@ -16,7 +16,7 @@ import { jobService } from './job.service';
 
 const approutes: Routes = [
       // {path:'', component:HeaderComponent},
-       {path:'', component:LoginComponent},
+        {path:'', component:LoginComponent},
       {path:'jobs', component:JobsComponent,children:[
         
         {path:'new',component:PostJobComponent},

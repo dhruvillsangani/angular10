@@ -1,8 +1,9 @@
 <div class="header">
     <a href="#default" class="logo" >CompanyLogo</a>
     <div class="header-right">
+      <a routerLinkActive="active" routerLink="/jobs" >Jobs</a>
       <a routerLinkActive="active" routerLink="/" >login</a>
-     <a routerLinkActive="active" routerLink="/jobs" >Jobs</a>
+     
 
       <a *ngIf="loginService.username1">Welcome {{loginService.username1}}</a>
     </div>

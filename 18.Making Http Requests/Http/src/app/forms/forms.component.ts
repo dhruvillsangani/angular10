@@ -11,9 +11,13 @@ import {map, tap} from 'rxjs/operators';
 })
 export class FormsComponent implements OnInit {
   loadedPosts  = []; 
+  
   signupForm:FormGroup
   genders = ['Male','Female']
   isnewtocompany = ['yes','no']
+
+  error = this.isnewtocompany[1];
+
   constructor(public empService:empService,private http: HttpClient) { }
 
   ngOnInit() {
@@ -38,7 +42,11 @@ export class FormsComponent implements OnInit {
     this.http.post('https://demoproject-4d24d-default-rtdb.firebaseio.com/posts.json',
     forms1).subscribe(responseData => {
       console.log(responseData);
-    })
+    }), error => {
+    
+      this.error = error.message;
+      console.log(error);
+    }
    
    } 
 

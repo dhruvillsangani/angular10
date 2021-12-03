@@ -13,16 +13,17 @@ import { EditJobComponent } from './jobs/edit-job/edit-job.component';
 import { loginService } from './login.service';
 import { Routes, RouterModule } from '@angular/router';
 import { jobService } from './job.service';
+import { AuthGuard } from './authguard.service';
 
 const approutes: Routes = [
       // {path:'', component:HeaderComponent},
-        {path:'', component:LoginComponent},
+        {path:'', component:LoginComponent, pathMatch:'full'},
       {path:'jobs', component:JobsComponent,children:[
         
         {path:'new',component:PostJobComponent},
         {path:':id', component:JobDetailsComponent},
 
-        {path:':id/edit',component:EditJobComponent}
+        {path:':id/edit',canActivate:[AuthGuard] ,component:EditJobComponent}
 
   ]},
 
@@ -49,7 +50,7 @@ const approutes: Routes = [
     AppRoutingModule,
     RouterModule.forRoot(approutes)    
   ],
-  providers: [loginService,jobService],
+  providers: [loginService,jobService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

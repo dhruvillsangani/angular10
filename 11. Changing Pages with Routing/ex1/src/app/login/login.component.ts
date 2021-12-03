@@ -13,19 +13,18 @@ export class LoginComponent implements OnInit {
   constructor(private loginService:loginService , private router:Router) { }
 
   ngOnInit(): void {
+    
   }
 
   onSubmitted(uname,upass) {
 
-    let username = uname.value;
+    var username = uname.value;
     let password = upass.value;
 
     this.loginService.username1 = username;
     this.loginService.getname(username);
-    this.router.navigate(['jobs']);      
-     
-     
+    this.router.navigate(['jobs']); 
 
-
+  
   }
 }

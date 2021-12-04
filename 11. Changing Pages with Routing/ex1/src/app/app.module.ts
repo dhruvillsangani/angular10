@@ -40,9 +40,6 @@ const approutes: Routes = [
     JobListComponent,
     JobDetailsComponent,
     EditJobComponent,
-  
-    
-   
   ],
   imports: [
 

@@ -1,6 +1,6 @@
  import { Injectable,EventEmitter, Output } from "@angular/core";
 import { rejects } from "assert";
-import { resolve } from "dns";
+
 import { promise } from "selenium-webdriver";
 import { AuthGuard } from "./authguard.service";
 

@@ -1,62 +1,49 @@
 <div class="overlay">
-    <!-- LOGN IN FORM by Omar Dsoky -->
-    <form>
-       <!--   con = Container  for items in the form-->
+
+    <form #contactForm="ngForm" (ngSubmit)="onsubmit(contactForm.value)">
+      
        <div class="con">
-       <!--     Start  header Content  -->
        <header class="head-form">
           <h2>Log In</h2>
-          <!--     A welcome message or an explanation of the login form -->
           <p>login here using your username and password</p>
        </header>
-       <!--     End  header Content  -->
        <br>
        <div class="field-set">
-         
-          <!--   user name -->
-             <span class="input-item">
-               <i class="fa fa-user-circle"></i>
-             </span>
-            <!--   user name Input-->
-             <input class="form-input" id="txt-input" type="text" placeholder="@UserName" required>
-         
-          <br>
-         
-               <!--   Password -->
-         
-          <span class="input-item">
-            <i class="fa fa-key"></i>
-           </span>
-          <!--   Password Input-->
-          <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
-         
-    <!--      Show/hide password  -->
-         <span>
-            <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>
-         </span>
-         
-         
-          <br>
-    <!--        buttons -->
-    <!--      button LogIn -->
-          <button class="log-in"> Log In </button>
+       
+            <select name="useroremail" (change)="onChange($event.target.value)" >
+               <option value="username">Username</option>
+               <option value="email">Email</option>
+            </select>
+            <br>
+            <br>
+            <div *ngIf="isusername">
+                  <label for="username">UserName</label>  
+                 <input type="text" name="username" ngModel  required pattern="^[a-zA-Z]([._-]?[a-zA-Z0-9]+)*$" username  #username="ngModel"> 
+                  <span class="help-block" *ngIf="!username?.valid && (username?.dirty || username?.touched)">!!Enter valid Username</span>
+            </div>
+    
+            <div *ngIf="isemail">
+              <label for="username">Email</label>
+              <input type="email" name="email" ngModel  required pattern="^[A-Za-z0-9._%+-]+@prominentpixel.com$" email  #email="ngModel"> 
+              <span class="help-block" *ngIf="!email?.valid && (email?.dirty || email?.touched)">!!Email must ends with prominentpixel.com</span>
+            </div>
+       <br>
+            <div>
+               <label for="password">Password</label>
+               <input type="password" name="password"  ngModel required password  #password="ngModel"> 
+               <span class="help-block" *ngIf="!password?.valid && (password?.dirty || password?.touched)">!!Enter valid password</span>
+            </div>
+
+            <button class="log-in" type="submit" [disabled]="!contactForm.valid"> Log In </button>
        </div>
-      
-    <!--   other buttons -->
-       <div class="other">
-    <!--      Forgot Password button-->
-          <button class="btn submits frgt-pass">Forgot Password</button>
-    <!--     Sign Up button -->
-          <button class="btn submits sign-up">Sign Up 
-    <!--         Sign Up font icon -->
-          <i class="fa fa-user-plus" aria-hidden="true"></i>
-          </button>
-    <!--      End Other the Division -->
-       </div>
-         
-    <!--   End Conrainer  -->
+ 
+       
+   
+  <br><br><br><br><br>
+         <div class="signup">
+            <br>
+           <a  style="color: blue;" routerLink="/signup">link Have not any account ?</a> 
+         </div>
       </div>
-      
-      <!-- End Form -->
     </form>
     </div>

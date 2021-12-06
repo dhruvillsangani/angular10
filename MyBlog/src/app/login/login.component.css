@@ -161,8 +161,15 @@ button {
 .submits {
     width: 48%;
     display: inline-block;
-    float: left;
+    /* float: left; */
     margin-left: 2%;
+}
+.btn.submits.sign-up {
+    margin-top: 90px;
+    margin-left: -347px;
+}
+.signup {
+    margin-right: 167px;
 }
 
 /*       Forgot Password button FAF3DD  */

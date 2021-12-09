@@ -11,10 +11,7 @@ name:string;
   constructor(public LoginService:LoginService) { }
 
   ngOnInit(): void {
-    this.name = this.LoginService.uname
-    console.log(this.name);
-    
-    
+ 
   }
 
 }

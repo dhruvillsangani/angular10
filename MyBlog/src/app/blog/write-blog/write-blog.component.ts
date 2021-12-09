@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../login.service';
+import { NgForm } from '@angular/forms';
+import { BlogService } from 'src/app/blog.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-write-blog',
@@ -6,10 +13,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./write-blog.component.css']
 })
 export class WriteBlogComponent implements OnInit {
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+  imageurl:string;
+  constructor(public LoginService:LoginService,private BlogService:BlogService,
+    private router:Router,
+    private route:ActivatedRoute) { }
 
-  constructor() { }
+  ngOnInit() {
+    this.dropdownList = [
+      { item_id: 1, item_text: 'java' },
+      { item_id: 2, item_text: 'Javascript' },
+      { item_id: 3, item_text: 'C++' },
+    ];
+    this.dropdownSettings= {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+  }
+  onItemSelect() {
 
-  ngOnInit(): void {
+  }
+
+  onsubmit(details) {
+   console.log(details);
+   let date = new Date().toString();
+   let title = details.title;
+   let description = details.description;
+   let tags= details.tags;
+   let imageurl = details.imageurl;
+   let author = details.author;
+   let id = this.BlogService.getBlogLength()+1;
+   console.log(tags);
+    this.BlogService.addData(id,title,imageurl,description,author,tags,date)
+    this.router.navigate(['../'],{relativeTo: this.route});
+   
   }
 
 }

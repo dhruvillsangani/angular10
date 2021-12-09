@@ -11,7 +11,5 @@ export class LoginService {
   getname(username) {
     this.uname = username;
     console.log(this.uname);
-    
-
   }
 }

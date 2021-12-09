@@ -37,7 +37,7 @@
         <td (click)="onclick(element.id)">{{element.id}}</td>
         <td (click)="onclick(element.id)">{{element.title}}</td>
         <td (click)="onclick(element.id)"> {{element.author}}</td>
-        <td (click)="onclick(element.id)">{{element.tags.ltext}}</td>
+        <td (click)="onclick(element.id)" *ngFor="let item of element.tags">{{item.item_text}}</td>
         <td><a (click)="onEdit(element.id)" style="color: blue;">Edit</a></td>
         <td><a (click)="onDelete(element.id)" style="color: red;">Delete</a></td>
       </tr>

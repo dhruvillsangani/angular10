@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../login.service';
 import { NgForm } from '@angular/forms';
 import { BlogService } from 'src/app/blog.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 
@@ -16,7 +17,9 @@ export class WriteBlogComponent implements OnInit {
   selectedItems = [];
   dropdownSettings = {};
   imageurl:string;
-  constructor(public LoginService:LoginService) { }
+  constructor(public LoginService:LoginService,private BlogService:BlogService,
+    private router:Router,
+    private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.dropdownList = [
@@ -40,6 +43,16 @@ export class WriteBlogComponent implements OnInit {
 
   onsubmit(details) {
    console.log(details);
+   let date = new Date().toString();
+   let title = details.title;
+   let description = details.description;
+   let tags= details.tags;
+   let imageurl = details.imageurl;
+   let author = details.author;
+   let id = this.BlogService.getBlogLength()+1;
+   console.log(tags);
+    this.BlogService.addData(id,title,imageurl,description,author,tags,date)
+    this.router.navigate(['../'],{relativeTo: this.route});
    
   }
 

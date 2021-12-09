@@ -12,13 +12,16 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
 import { WriteBlogComponent } from './blog/write-blog/write-blog.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BlogDetailsComponent } from './blog-details/blog-details.component';
 
 const approutes: Routes = [
   // {path:'', component:HeaderComponent},
     {path:'login', component:LoginComponent},
     {path:'signup',component:SignupComponent},
     {path: 'blog',component:BlogComponent,children:[
-      {path:'new',component:WriteBlogComponent}
+      {path:'',component:BlogListComponent},
+      {path:'new',component:WriteBlogComponent},
+      {path:':id',component:BlogDetailsComponent}
     ]}
 
 
@@ -31,7 +34,8 @@ const approutes: Routes = [
     SignupComponent,
     BlogComponent,
     BlogListComponent,
-    WriteBlogComponent
+    WriteBlogComponent,
+    BlogDetailsComponent
   ],
   imports: [
 

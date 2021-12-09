@@ -1,1 +1,47 @@
-<p>list workes</p>
+<!-- <div class="container">
+    <button class="btn btn-primary">write something to make better world</button> -->
+    <!-- <div
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="ScrollDistance"
+    [infiniteScrollThrottle]=" ScrollThrottle"
+    (scrolled)="onScroll()"
+    [scrollWindow]="false"
+  ></div>
+
+<div class="details" *ngFor="let item of BlogService.arr" let i=index >
+   <h2>{{item.id}}</h2>
+   <h3>{{item.author}}</h3>
+
+
+</div>
+
+
+</div> -->
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Tags</th>
+        <th scope="col">Action</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let element of BlogService.arr; let i = index">
+        <!-- <th scope="row">{{i+1}}</th>  -->
+        <!-- <td >{{element.id[i+1]}}</td> -->
+        <td (click)="onclick(element.id)">{{element.id}}</td>
+        <td (click)="onclick(element.id)">{{element.title}}</td>
+        <td (click)="onclick(element.id)"> {{element.author}}</td>
+        <td (click)="onclick(element.id)">{{element.tags.ltext}}</td>
+        <td><a (click)="onEdit(element.id)" style="color: blue;">Edit</a></td>
+        <td><a (click)="onDelete(element.id)" style="color: red;">Delete</a></td>
+      </tr>
+    
+    </tbody>
+  </table>
+

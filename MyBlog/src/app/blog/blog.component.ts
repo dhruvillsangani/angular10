@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,8 @@ import { LoginService } from '../login.service';
 })
 export class BlogComponent implements OnInit {
   
-  constructor(private LoginService:LoginService) {
+  constructor(private LoginService:LoginService,private router:Router,
+    private route:ActivatedRoute) {
    
    }
 

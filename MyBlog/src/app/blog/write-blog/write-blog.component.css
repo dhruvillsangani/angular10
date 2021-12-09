@@ -1,0 +1,14 @@
+.multiselect-dropdown[_ngcontent-wcy-c51] .dropdown-btn[_ngcontent-wcy-c51] {
+    display: inline-block;
+    border: 1px solid #adadad;
+    width: 40%;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.52857143;
+    text-align: left;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border-radius: 4px;
+}

@@ -3,20 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { BlogComponent } from './blog/blog.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-import { BlogComponent } from './blog/blog.component';
+import { HeaderComponent } from './header/header.component';
+import { BlogDetailsComponent } from './blog/blog-details/blog-details.component';
+import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
 import { WriteBlogComponent } from './blog/write-blog/write-blog.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { BlogDetailsComponent } from './blog/blog-details/blog-details.component';
-import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const approutes: Routes = [
   // {path:'', component:HeaderComponent},
@@ -33,29 +31,26 @@ const approutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    BlogComponent,
     LoginComponent,
     SignupComponent,
-    BlogComponent,
-    BlogListComponent,
-    WriteBlogComponent,
+    HeaderComponent,
     BlogDetailsComponent,
     BlogEditComponent,
+    BlogListComponent,
+    WriteBlogComponent,
     
-   
   ],
   imports: [
-
-  BrowserModule,
+    BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(approutes),
     NgMultiSelectDropDownModule.forRoot(),
-   
-   
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,]
 })
 export class AppModule { }

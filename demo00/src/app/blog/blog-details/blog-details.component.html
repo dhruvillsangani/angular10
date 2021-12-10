@@ -1,0 +1,32 @@
+<br>
+<span class="border border-dark">
+    <div class="container" class="border border-dark">
+    <div>
+    <label for="title">Title: {{blogarr.title}}</label>
+    </div>
+
+   <div>
+    <label for="date">Publish Date:{{blogarr.date}} </label>
+   </div>
+
+  <div>
+    <img [src] = "blogarr.imageurl" alt="" style="max-width: 500px; max-height: 200px;" class="rounded">
+  </div>
+    <br>
+
+    <div>
+        <label for="description">Description :{{blogarr.description}}</label>
+    </div>
+
+    <div>
+        <label for="">Author-Name :{{blogarr.author}}</label>
+    </div>
+
+    <div>
+        <a class="previous" (click)="onPrevious()" >&laquo; Previous</a>
+        <a class="next" (click)="onNext()">Next &raquo;</a>
+    </div>
+
+</div>
+
+</span>

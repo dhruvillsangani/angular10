@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ex1": {
+    "demo00": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ex1",
+            "outputPath": "dist/demo00",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,7 +24,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -63,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ex1:build"
+            "browserTarget": "demo00:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ex1:build:production"
+              "browserTarget": "demo00:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ex1:build"
+            "browserTarget": "demo00:build"
           }
         },
         "test": {
@@ -111,19 +110,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ex1:serve"
+            "devServerTarget": "demo00:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ex1:serve:production"
+              "devServerTarget": "demo00:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ex1",
+  "defaultProject": "demo00",
   "cli": {
-    "analytics": "359f829a-4c5a-4791-9e19-8b09cf32ddb0"
+    "analytics": "7428a1e7-cf57-49c8-928c-927385413b08"
   }
 }

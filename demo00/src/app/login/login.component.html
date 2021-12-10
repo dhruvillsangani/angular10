@@ -1,0 +1,49 @@
+<div class="overlay">
+
+    <form #contactForm="ngForm" (ngSubmit)="onsubmit(contactForm.value)">
+      
+       <div class="con">
+       <header class="head-form">
+          <h2>Log In</h2>
+          <p>login here using your username and password</p>
+       </header>
+       <br>
+       <div class="field-set">
+       
+            <select name="useroremail" (change)="onChange($event.target.value)" >
+               <option value="username">Username</option>
+               <option value="email">Email</option>
+            </select>
+            <br>
+            <br>
+            <div *ngIf="isusername">
+                  <label for="username">UserName</label>  
+                 <input type="text" name="username" ngModel  required pattern="^[a-zA-Z]([._-]?[a-zA-Z0-9]+)*$" username  #username="ngModel"> 
+                  <span class="help-block" *ngIf="!username?.valid && (username?.dirty || username?.touched)">!!Enter valid Username</span>
+            </div>
+    
+            <div *ngIf="isemail">
+              <label for="username">Email</label>
+              <input type="email" name="email" ngModel  required pattern="^[A-Za-z0-9._%+-]+@prominentpixel.com$" email  #email="ngModel"> 
+              <span class="help-block" *ngIf="!email?.valid && (email?.dirty || email?.touched)">!!Email must ends with prominentpixel.com</span>
+            </div>
+       <br>
+            <div>
+               <label for="password">Password</label>
+               <input type="password" name="password"  ngModel required password  #password="ngModel"> 
+               <span class="help-block" *ngIf="!password?.valid && (password?.dirty || password?.touched)">!!Enter valid password</span>
+            </div>
+
+            <button class="log-in" type="submit" [disabled]="!contactForm.valid"> Log In </button>
+       </div>
+ 
+       
+   
+  <br><br><br><br><br>
+         <div class="signup">
+            <br>
+           <a  style="color: blue;" routerLink="/signup">link Have not any account ?</a> 
+         </div>
+      </div>
+    </form>
+    </div>

@@ -12,7 +12,16 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
 import { WriteBlogComponent } from './blog/write-blog/write-blog.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { BlogDetailsComponent } from './blog/blog-details/blog-details.component';
+import { BlogEditComponent } from './blog/blog-edit/blog-edit.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule } from '@angular/material/dialog';
+import { MatRippleModule } from '@angular/material/core';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 const approutes: Routes = [
   // {path:'', component:HeaderComponent},
@@ -21,11 +30,11 @@ const approutes: Routes = [
     {path: 'blog',component:BlogComponent,children:[
       {path:'',component:BlogListComponent},
       {path:'new',component:WriteBlogComponent},
-      {path:':id',component:BlogDetailsComponent}
+      {path:':id',component:BlogDetailsComponent},
+      {path:':id/edit',component:BlogEditComponent}
     ]}
-
-
 ]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +44,10 @@ const approutes: Routes = [
     BlogComponent,
     BlogListComponent,
     WriteBlogComponent,
-    BlogDetailsComponent
+    BlogDetailsComponent,
+    BlogEditComponent,
+    
+   
   ],
   imports: [
 
@@ -44,7 +56,13 @@ const approutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(approutes),
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NoopAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

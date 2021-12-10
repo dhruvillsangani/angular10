@@ -19,18 +19,16 @@ export class BlogListComponent implements OnInit {
   ngOnInit(){
     
   }
-  onScroll() {
+ 
+
+  onclick(id:number) {
+    this.router.navigate([id],{relativeTo: this.route});
 
   }
-
-  onclick() {
-    this.router.navigate(['id'],{relativeTo: this.route});
-
+  onEdit(id:number) {
+    this.router.navigate([id,'edit'],{relativeTo: this.route});
   }
-
-onDelete() {
-
-}
+onDelete(id:number) {}
 
 
 

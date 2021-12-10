@@ -3,7 +3,7 @@ import { LoginService } from '../../login.service';
 import { NgForm } from '@angular/forms';
 import { BlogService } from 'src/app/blog.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 
@@ -37,12 +37,9 @@ export class WriteBlogComponent implements OnInit {
       allowSearchFilter: true
     };
   }
-  onItemSelect() {
-
-  }
-
+ 
   onsubmit(details) {
-   console.log(details);
+
    let date = new Date().toString();
    let title = details.title;
    let description = details.description;
@@ -50,7 +47,6 @@ export class WriteBlogComponent implements OnInit {
    let imageurl = details.imageurl;
    let author = details.author;
    let id = this.BlogService.getBlogLength()+1;
-   console.log(tags);
     this.BlogService.addData(id,title,imageurl,description,author,tags,date)
     this.router.navigate(['../'],{relativeTo: this.route});
    

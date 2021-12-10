@@ -1,3 +1,4 @@
+<div class="container" class="border border-dark">
 <div class="overlay">
 
     <form #postBlog="ngForm" (ngSubmit)="onsubmit(postBlog.value)">
@@ -29,7 +30,7 @@
                 <br>
                 <div>
                     <label for="tags">Tags:</label>
-                    <ng-multiselect-dropdown class="select" [placeholder]="'custom placeholder'"
+                    <ng-multiselect-dropdown class="select" [placeholder]="'Select'"
                         [settings]="dropdownSettings" [data]="dropdownList" ngModel name="tags">
                     </ng-multiselect-dropdown>
                 </div>
@@ -45,4 +46,5 @@
             </div>
         </div>
     </form>
+</div>
 </div>

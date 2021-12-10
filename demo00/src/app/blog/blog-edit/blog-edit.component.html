@@ -1,0 +1,60 @@
+<ng-template #content let-modal>
+ 
+    <div class="container" class="border border-dark">
+        <div class="overlay">
+        
+            <form #postBlog="ngForm" (ngSubmit)="onsubmit(postBlog.value)">
+        
+                <div class="con">
+        
+                    <br>
+                    <div class="field-set">
+        
+                        <label for="title">Title</label>
+                        <input type="text" name="title" ngModel required title #title="ngModel">
+                        <br>
+                        <br>
+                        <div>
+                            <label for="description">Description</label>
+                            <textarea name="description" id="description" rows="2" cols="20" ngModel required description
+                                #description="ngModel"></textarea>
+                        </div>
+        
+                        <div>
+        
+                            <label for="image">Image URL</label>
+                            <input type="text" name="imageurl" ngModel required imageurl #imageurl="ngModel">
+        
+                        </div>
+                        <div class="col-mg-5">
+                            <img [src] = "imageurl.value" style="max-width: 500px; max-height: 500px;">
+                        </div>
+                        <br>
+                        <div>
+                            <label for="tags">Tags:</label>
+                            <ng-multiselect-dropdown class="select" [placeholder]="'Select'"
+                                [settings]="dropdownSettings" [data]="dropdownList" ngModel name="tags">
+                            </ng-multiselect-dropdown>
+                        </div>
+                        <br><br>
+                        <div>
+                            <label for="author">Author</label>
+                            <input type="text" name="author" ngModel="{{LoginService.uname}}" readonly>
+                        </div>
+                        <br><br>
+                       
+        
+                        <button class="log-in" type="submit" [disabled]="!postBlog.valid"> Publish</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    
+  </ng-template>
+  
+  <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
+  
+  <hr>
+  
+  <!-- <pre>{{ closeResult }}</pre> -->

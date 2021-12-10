@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MyBlog": {
+    "ex1": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/MyBlog",
+            "outputPath": "dist/ex1",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "MyBlog:build"
+            "browserTarget": "ex1:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "MyBlog:build:production"
+              "browserTarget": "ex1:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MyBlog:build"
+            "browserTarget": "ex1:build"
           }
         },
         "test": {
@@ -111,19 +111,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "MyBlog:serve"
+            "devServerTarget": "ex1:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "MyBlog:serve:production"
+              "devServerTarget": "ex1:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "MyBlog",
+  "defaultProject": "ex1",
   "cli": {
-    "analytics": "10647d76-e16d-4c79-b414-13a896d14b88"
+    "analytics": "359f829a-4c5a-4791-9e19-8b09cf32ddb0"
   }
 }

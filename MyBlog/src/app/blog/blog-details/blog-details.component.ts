@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BlogService } from '../blog.service';
-import { LoginService } from '../login.service';
+import { BlogService } from '../../blog.service';
+import { LoginService } from '../../login.service';
 
 @Component({
   selector: 'app-blog-details',
@@ -24,6 +24,22 @@ export class BlogDetailsComponent implements OnInit {
         console.log(this.blogarr);
       }
     );
+  }
+
+  onPrevious() {
+    if(this.blogarr.id ===1) {
+    alert("This is first blog")
+    return;
+    }
+    this.router.navigate(['../',this.blogarr.id-1],{relativeTo: this.route});
+  }
+
+  onNext() {
+    if(this.blogarr.id === this.BlogService.getBlogLength()) {
+      alert("this is last blog")
+      return
+    }
+    this.router.navigate(['../',this.blogarr.id+1],{relativeTo: this.route});
   }
 
 }

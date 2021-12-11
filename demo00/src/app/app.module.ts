@@ -15,18 +15,21 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MyblogComponent } from './blog/myblog/myblog.component';
 
 const approutes: Routes = [
   // {path:'', component:HeaderComponent},
-    {path:'login', component:LoginComponent},
-    {path:'signup',component:SignupComponent},
-    {path: 'blog',component:BlogComponent,children:[
-      {path:'',component:BlogListComponent},
-      {path:'new',component:WriteBlogComponent},
-      {path:':id',component:BlogDetailsComponent},
-      {path:':id/edit',component:BlogEditComponent}
-    ]}
-]
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'blog',component: BlogComponent, children: [
+      { path: '', component: BlogListComponent },
+      { path: 'new', component: WriteBlogComponent },
+      { path: ':id', component: BlogDetailsComponent },
+      { path: ':id/edit', component: BlogEditComponent },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [
@@ -39,7 +42,7 @@ const approutes: Routes = [
     BlogEditComponent,
     BlogListComponent,
     WriteBlogComponent,
-    
+    MyblogComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,9 +51,9 @@ const approutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(approutes),
     NgMultiSelectDropDownModule.forRoot(),
-    
+    NgbModule,
   ],
   providers: [],
-  bootstrap: [AppComponent,]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

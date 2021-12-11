@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
   uname = '';
 
-  constructor() { }
- 
+  constructor() {}
+
   getname(username) {
     this.uname = username;
     console.log(this.uname);

@@ -1,9 +1,10 @@
 <div class="header">
-    <a routerLink="blog" class="logo" >CompanyLogo</a>
-    <div class="header-right">
-      <a routerLinkActive="active" routerLink="blog" >Blog</a>
-      <a [hidden]="LoginService.uname != ''" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="login" >login</a>
-      <a *ngIf="LoginService.uname">Welcome {{LoginService.uname}} </a>
-    </div>
-  
+  <a routerLink="blog" class="logo">CompanyLogo</a>
+  <div class="header-right">
+    <a routerLinkActive="active" routerLink="blog">Blog</a>
+    <a [hidden]="LoginService.uname != ''" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="login">login</a>
+    <a *ngIf="LoginService.uname">Welcome {{LoginService.uname}} </a>
   </div>
+
+</div>

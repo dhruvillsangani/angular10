@@ -11,7 +11,7 @@ import { LoginService } from '../../login.service';
 })
 export class BlogDetailsComponent implements OnInit {
   id: number;
-  blogarr = {id:0,title:"title1",imageurl:"https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",description:"description1",author:"author1",tags:[{item_id: 1, item_text: 'java'}],date:"12-12-12"};
+  blogs = {id:0,title:"title1",imageurl:"https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",description:"description1",author:"author1",languages:[{language_id: 1, language_text: 'java'}],date:"12-12-12"};
 
   constructor(private LoginService:LoginService,public BlogService:BlogService,private router:Router,
     private route:ActivatedRoute) { }
@@ -20,26 +20,28 @@ export class BlogDetailsComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.blogarr= this.BlogService.getBlogId(this.id)
-        console.log(this.blogarr);
+        this.blogs= this.BlogService.getBlogId(this.id)
+        console.log(this.blogs);
       }
     );
   }
 
   onPrevious() {
-    if(this.blogarr.id ===1) {
+    if(this.blogs.id ===0) {
     alert("This is first blog")
     return;
     }
-    this.router.navigate(['../',this.blogarr.id-1],{relativeTo: this.route});
+    this.router.navigate(['../',this.blogs.id-1],{relativeTo: this.route});
   }
 
   onNext() {
-    if(this.blogarr.id === this.BlogService.getBlogLength()) {
+    if(this.blogs.id === this.BlogService.getBlogLength()-1) {
       alert("this is last blog")
       return
     }
-    this.router.navigate(['../',this.blogarr.id+1],{relativeTo: this.route});
+    console.log(this.blogs.id);
+    
+    this.router.navigate(['../',this.blogs.id+1],{relativeTo: this.route});
   }
 
 }

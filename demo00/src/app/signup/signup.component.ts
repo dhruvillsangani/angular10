@@ -59,6 +59,7 @@ export class SignupComponent implements OnInit {
   onsubmit() {
     let forms1 = this.signupForm.value;
     console.log(forms1);
+    this.router.navigate(['/login'], { relativeTo: this.route });
   }
 
   password(formGroup: FormGroup) {

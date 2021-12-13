@@ -1,1 +1,28 @@
-<p>myblog works!</p>
+<!-- <button class="btn btn-primary" routerLink="/blog/new">write something to make better world</button> -->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Languages</th>
+      <th scope="col">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let element of myFinalBlog; let i = index">
+      <td (click)="onClick(i)">{{element.id}}</td>
+      <td (click)="onClick(element.id)">{{element.title}}</td>
+      <td (click)="onClick(element.id)"> {{element.author}}</td>
+      <td (click)="onClick(element.id)" *ngFor="let item of element.languages">{{item.language_text}}</td>
+      <td><a (click)="onEdit(element.id)" style="color: blue;">Edit</a></td>
+      <td> <a (click)="onDelete(element)" style="color: rgb(250, 1, 1);">Delete</a></td>
+    </tr>
+
+  </tbody>
+</table>
+
+

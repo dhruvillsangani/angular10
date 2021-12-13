@@ -1,4 +1,4 @@
-<button class="btn btn-primary" routerLink="/blog/new">write something to make better world</button>
+<button class="btn btn-primary" routerLink="/blog/new">Add Blog</button>
 
 <table class="table">
   <thead>
@@ -12,13 +12,13 @@
     </tr>
   </thead>
   <tbody>
-
+<!-- changed logic for resolving deleting bug -->
     <tr *ngFor="let element of BlogService.arr; let i = index">
-      <td (click)="onclick(i)">{{element.id}}</td>
-      <td (click)="onclick(element.id)">{{element.title}}</td>
-      <td (click)="onclick(element.id)"> {{element.author}}</td>
-      <td (click)="onclick(element.id)" *ngFor="let item of element.languages">{{item.language_text}}</td>
-      <td><a (click)="onEdit(element.id)" style="color: blue;">Edit</a></td>
+      <td (click)="onclick(i)">{{i}}</td>
+      <td (click)="onclick(i)">{{element.title}}</td>
+      <td (click)="onclick(i)"> {{element.author}}</td>
+      <td (click)="onclick(i)" *ngFor="let item of element.languages">{{item.language_text}}</td>
+      <td><a (click)="onEdit(i)" style="color: blue;">Edit</a></td>
       <td> <a (click)="onDelete(element)" style="color: rgb(250, 1, 1);">Delete</a></td>
     </tr>
 

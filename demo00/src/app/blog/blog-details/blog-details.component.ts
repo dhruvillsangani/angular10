@@ -11,7 +11,7 @@ import { LoginService } from '../../login.service';
 })
 export class BlogDetailsComponent implements OnInit {
   id: number;
-  blogs = {id:0,title:"title1",imageurl:"https://images.pexels.com/photos/326055/pexels-photo-326055.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",description:"description1",author:"author1",languages:[{language_id: 1, language_text: 'java'}],date:"12-12-12"};
+  blogs:any;
 
   constructor(private LoginService:LoginService,public BlogService:BlogService,private router:Router,
     private route:ActivatedRoute) { }
@@ -20,14 +20,18 @@ export class BlogDetailsComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
+        console.log(this.id);
         this.blogs= this.BlogService.getBlogId(this.id)
         console.log(this.blogs);
       }
     );
+
+    
   }
+  
 
   onPrevious() {
-    if(this.blogs.id ===0) {
+    if(this.blogs.id ==0) {
     alert("This is first blog")
     return;
     }
@@ -35,7 +39,7 @@ export class BlogDetailsComponent implements OnInit {
   }
 
   onNext() {
-    if(this.blogs.id === this.BlogService.getBlogLength()-1) {
+    if(this.blogs.id == this.BlogService.getBlogLength()-1) {
       alert("this is last blog")
       return
     }

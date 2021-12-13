@@ -3,6 +3,8 @@ import { LoginService } from '../../login.service';
 import { NgForm } from '@angular/forms';
 import { BlogService } from 'src/app/blog.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @Component({
@@ -11,6 +13,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
   styleUrls: ['./write-blog.component.css'],
 })
 export class WriteBlogComponent implements OnInit {
+  public Editor = ClassicEditor;
   languageList = [];
   selectedItems = [];
   languageSettings = {};
@@ -40,6 +43,7 @@ export class WriteBlogComponent implements OnInit {
   }
 
   onSubmit(details) {
+    // here inline 43 i have added +1
      details.id =this.BlogService.getBlogLength()
      let time =  new Date().toString();
      details.date = time;

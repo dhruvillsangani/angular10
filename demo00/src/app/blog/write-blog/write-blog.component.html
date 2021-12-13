@@ -14,8 +14,15 @@
                     <br>
                     <div>
                         <label for="description">Description</label>
-                        <textarea name="description" id="description" rows="2" cols="20" ngModel required description
-                            #description="ngModel"></textarea>
+                        <ckeditor ngModel
+                        [editor]="Editor"
+                        id="description"
+                        name="description"
+                        #desciption="ngModel"
+                         >
+                        </ckeditor>
+                        <!-- <textarea name="description" id="description" rows="2" cols="20" ngModel required description
+                            #description="ngModel"></textarea> -->
                     </div>
     
                     <div>
@@ -45,6 +52,8 @@
                     <button class="log-in" type="submit" [disabled]="!postBlog.valid"> Publish</button>
                 </div>
             </div>
+            
+
         </form>
     </div>
     </div>

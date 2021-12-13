@@ -1,6 +1,7 @@
 <div class="header">
   <a routerLink="blog" class="logo">CompanyLogo</a>
   <div class="header-right">
+    <a routerLinkActive="active" routerLink="myblog">MyBlog</a>
     <a routerLinkActive="active" routerLink="blog">Blog</a>
     <a [hidden]="LoginService.uname != ''" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
       routerLink="login">login</a>

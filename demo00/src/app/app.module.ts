@@ -17,6 +17,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MyblogComponent } from './blog/myblog/myblog.component';
+import { AuthguardService } from './authguard.service';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
+
 
 const approutes: Routes = [
   // {path:'', component:HeaderComponent},
@@ -26,9 +30,12 @@ const approutes: Routes = [
       { path: '', component: BlogListComponent },
       { path: 'new', component: WriteBlogComponent },
       { path: ':id', component: BlogDetailsComponent },
-      { path: ':id/edit', component: BlogEditComponent },
+      { path: ':id/edit',canActivate:[AuthguardService], component: BlogEditComponent },
+      
     ],
+    
   },
+  { path: 'myblog', component: MyblogComponent}
 ];
 
 @NgModule({
@@ -43,6 +50,7 @@ const approutes: Routes = [
     BlogListComponent,
     WriteBlogComponent,
     MyblogComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -52,8 +60,9 @@ const approutes: Routes = [
     RouterModule.forRoot(approutes),
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,
+    CKEditorModule
   ],
-  providers: [],
+  providers: [AuthguardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -13,19 +13,22 @@
                 <div class="field-set">
 
                     <label for="title">Title</label>
-                    <input type="text" name="title" ngModel required title #title="ngModel">
+                    <input type="text" name="title" ngModel="{{blogs.title}}" required title #title="ngModel">
+
                     <br>
                     <br>
                     <div>
                         <label for="description">Description</label>
-                        <textarea name="description" id="description" rows="2" cols="20" ngModel required description
-                            #description="ngModel"></textarea>
+                        <ckeditor ngModel="{{blogs.description}}" [editor]="Editor" id="description" name="description"
+                            #desciption="ngModel">
+                        </ckeditor>
                     </div>
 
                     <div>
 
                         <label for="image">Image URL</label>
-                        <input type="text" name="imageurl" ngModel required imageurl #imageurl="ngModel">
+                        <input type="text" name="imageurl" ngModel="{{blogs.imageurl}}" required imageurl
+                            #imageurl="ngModel">
 
                     </div>
                     <div class="col-mg-5">
@@ -35,7 +38,7 @@
                     <div>
                         <label for="languages">languages:</label>
                         <ng-multiselect-dropdown class="select" [placeholder]="'Select'" [settings]="languageSettings"
-                            [data]="languageList" ngModel name="languages">
+                            [data]="languageList" [(ngModel)]="blogs.languages" name="languages">
                         </ng-multiselect-dropdown>
                     </div>
                     <br><br>

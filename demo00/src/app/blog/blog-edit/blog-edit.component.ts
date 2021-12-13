@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import {
-  NgbModal,
-  ModalDismissReasons,
- 
-} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal,ModalDismissReasons,} from '@ng-bootstrap/ng-bootstrap';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { LoginService } from 'src/app/login.service';
 import { BlogService } from 'src/app/blog.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-blog-edit',
@@ -14,12 +12,14 @@ import { BlogService } from 'src/app/blog.service';
   styleUrls: ['./blog-edit.component.css'],
 })
 export class BlogEditComponent implements OnInit {
+  public Editor = ClassicEditor;
   languageList = [];
   languageSettings = {};
   selectedItems = [];
   imageurl: string;
   closeModal: string;
   id: number;
+  postBlog=NgForm;
   blogs = {
     id: 0,
     title: 'title1',
@@ -42,7 +42,7 @@ export class BlogEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.blogs = this.BlogService.getBlogId(this.id);
+     this.blogs = this.BlogService.getBlogId(this.id);
       console.log(this.blogs);
     });
 

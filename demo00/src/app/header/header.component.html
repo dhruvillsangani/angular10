@@ -1,11 +1,22 @@
 <div class="header">
-  <a routerLink="blog" class="logo">CompanyLogo</a>
+  
+  <!-- <a routerLink="blog" class="logo" >CompanyLogo</a> -->
+  <img [src]="img"routerLink="blog" class="logo" alt="" style="max-width: 100px; max-height: 300px;" class="rounded">
+  <label class="space"> 
+    {{ 'HOME.SELECT' | translate }}
+    <select #langSelect (change)="translate.use(langSelect.value)">
+      <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+    </select>
+  </label>
   <div class="header-right">
-    <a routerLinkActive="active" routerLink="myblog">MyBlog</a>
-    <a routerLinkActive="active" routerLink="blog">Blog</a>
-    <a [hidden]="LoginService.uname != ''" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-      routerLink="login">login</a>
-    <a *ngIf="LoginService.uname">Welcome {{LoginService.uname}} </a>
+    <a routerLinkActive="active" class="myblog" routerLink="myblog">{{'HOME.MyBlog'| translate}}</a>
+    <a [hidden]="LoginService.uname != ''" class="login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      routerLink="login">{{'HOME.login'| translate}}</a>
+      <a routerLinkActive="active" class="logout" [hidden]=" LoginService.loggedIn != true" routerLink="logout" >{{'HOME.logout'| translate}}</a>
+    <a *ngIf="LoginService.uname" class="welcome">{{'HOME.Welcome'| translate}} {{LoginService.uname}} </a>
   </div>
 
+  
+
 </div>
+

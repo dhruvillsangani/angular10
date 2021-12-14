@@ -16,7 +16,21 @@
     line-height: 25px;
     border-radius: 4px;
   }
-  
+  .space{
+    padding: 20px;
+  }
+  .myblog {
+    margin-top: 20px;
+  }
+  .login {
+    margin-top: 20px;
+  }
+  .logout {
+    margin-top: 20px;
+  }
+  .welcome {
+    margin-top: 20px;
+  }
   /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
   .header a.logo {
     font-size: 25px;
@@ -51,3 +65,5 @@
       float: none;
     }
   }
+
+  

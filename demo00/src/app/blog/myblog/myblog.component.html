@@ -7,7 +7,7 @@
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Languages</th>
-      <th scope="col">Action</th>
+      <th scope="col"style="column-span: 2;" >Action</th>
 
     </tr>
   </thead>
@@ -17,9 +17,11 @@
       <td (click)="onClick(i)">{{element.id}}</td>
       <td (click)="onClick(element.id)">{{element.title}}</td>
       <td (click)="onClick(element.id)"> {{element.author}}</td>
-      <td (click)="onClick(element.id)" *ngFor="let item of element.languages">{{item.language_text}}</td>
-      <td><a (click)="onEdit(element.id)" style="color: blue;">Edit</a></td>
-      <td> <a (click)="onDelete(element)" style="color: rgb(250, 1, 1);">Delete</a></td>
+      <td (click)="onClick(element.id)" ><div *ngFor="let item of element.languages">{{item.language_text}}</div></td>
+      <td>
+        <a (click)="onEdit(element.id)" style="color: blue;" class="space">Edit</a>
+        <a (click)="onDelete(element)" style="color: rgb(250, 1, 1);">Delete</a>
+      </td>
     </tr>
 
   </tbody>

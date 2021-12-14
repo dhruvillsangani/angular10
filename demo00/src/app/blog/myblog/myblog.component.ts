@@ -13,6 +13,8 @@ export class MyblogComponent implements OnInit {
   myBlog: any;
   myFinalBlog = [];
   authorName: any;
+  modelOpen = false;
+  
 
   constructor(
     private loginService: LoginService,

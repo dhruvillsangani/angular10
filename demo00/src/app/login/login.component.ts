@@ -21,10 +21,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onsubmit(contactForm) {
-    console.log(contactForm);
-    let uname = contactForm.username;
-    console.log(uname);
-    this.LoginService.getname(uname);
+    this.LoginService.getname(contactForm.username);
+    // this.LoginService.getname(contactForm.email);
+
     this.router.navigate(['/blog'], { relativeTo: this.route });
   }
   onChange(value) {

@@ -7,21 +7,30 @@ import { AuthguardService } from './authguard.service';
   providedIn: 'root',
 })
 export class LoginService {
-  uname = '';
-  loggedIn: boolean = true;
+  uname = 'author1';
+  loggedIn = true;
 
   constructor() {}
   isAuthenticated() {
     const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
+        // this.loggedIn = true;
         resolve(this.loggedIn);
       }, 100);
     });
     return promise;
   }
 
-  getname(username) {
+  logout() {
+    this.loggedIn = false;
+    this.uname = '';
+
+  }
+
+  getname(username:any) {
     this.uname = username;
+    this.loggedIn = true;
     console.log(this.uname);
   }
+ 
 }

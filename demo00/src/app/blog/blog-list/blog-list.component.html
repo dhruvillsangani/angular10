@@ -1,5 +1,6 @@
+<br>
 <button class="btn btn-primary" routerLink="/blog/new">Add Blog</button>
-
+<div class="control">
 <table class="table">
   <thead>
     <tr>
@@ -7,7 +8,7 @@
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Languages</th>
-      <th scope="col">Action</th>
+      <th scope="col" style="column-span: 2;">  Action</th>
 
     </tr>
   </thead>
@@ -17,10 +18,14 @@
       <td (click)="onclick(i)">{{i}}</td>
       <td (click)="onclick(i)">{{element.title}}</td>
       <td (click)="onclick(i)"> {{element.author}}</td>
-      <td (click)="onclick(i)" *ngFor="let item of element.languages">{{item.language_text}}</td>
-      <td><a (click)="onEdit(i)" style="color: blue;">Edit</a></td>
-      <td> <a (click)="onDelete(element)" style="color: rgb(250, 1, 1);">Delete</a></td>
+      <td (click)="onclick(i)" ><div *ngFor="let item of element.languages">{{item.language_text}}</div></td>
+      <td>
+        <a (click)="onEdit(i)" style="color: blue;" class="space" >Edit</a>  
+       <a (click)="onDelete(element)" style="color: rgb(250, 1, 1);">Delete</a>
+      </td>
     </tr>
 
   </tbody>
 </table>
+</div>
+<button class="btn" (click)="openModal()" *ngFor="let element of BlogService.arr; let i = index"> </button>

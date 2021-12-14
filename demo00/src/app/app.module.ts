@@ -19,6 +19,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MyblogComponent } from './blog/myblog/myblog.component';
 import { AuthguardService } from './authguard.service';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { FooterComponent } from './footer/footer.component';
+import { LogoutComponent } from './logout/logout.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -26,6 +32,7 @@ const approutes: Routes = [
   // {path:'', component:HeaderComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'logout', component: LogoutComponent},
   { path: 'blog',component: BlogComponent, children: [
       { path: '', component: BlogListComponent },
       { path: 'new', component: WriteBlogComponent },
@@ -37,6 +44,11 @@ const approutes: Routes = [
   },
   { path: 'myblog', component: MyblogComponent}
 ];
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @NgModule({
   declarations: [
@@ -50,6 +62,8 @@ const approutes: Routes = [
     BlogListComponent,
     WriteBlogComponent,
     MyblogComponent,
+    FooterComponent,
+    LogoutComponent,
   
   ],
   imports: [
@@ -60,7 +74,16 @@ const approutes: Routes = [
     RouterModule.forRoot(approutes),
     NgMultiSelectDropDownModule.forRoot(),
     NgbModule,
-    CKEditorModule
+    CKEditorModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    
   ],
   providers: [AuthguardService],
   bootstrap: [AppComponent],

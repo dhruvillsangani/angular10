@@ -10,9 +10,9 @@
   </label>
   <div class="header-right">
     <a routerLinkActive="active" class="myblog" routerLink="myblog">{{'HOME.MyBlog'| translate}}</a>
-    <a [hidden]="LoginService.uname != ''" class="login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+    <a [hidden]="LoginService.uname != ''" class="login"routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
       routerLink="login">{{'HOME.login'| translate}}</a>
-      <a routerLinkActive="active" class="logout" [hidden]=" LoginService.loggedIn != true" routerLink="logout" >{{'HOME.logout'| translate}}</a>
+      <a routerLinkActive="active" class="logout" [hidden]="!LoginService.uname" (click)="onLogout()"  >{{'HOME.logout'| translate}}</a>
     <a *ngIf="LoginService.uname" class="welcome">{{'HOME.Welcome'| translate}} {{LoginService.uname}} </a>
   </div>
 

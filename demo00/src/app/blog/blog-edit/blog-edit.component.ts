@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -12,17 +18,17 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./blog-edit.component.css'],
 })
 export class BlogEditComponent implements OnInit {
-
   public Editor = ClassicEditor;
-  @Input() parentID;
+  @Input()public parentID;
   languageList = [];
   languageSettings = {};
   selectedItems = [];
   imageurl: string;
   closeModal: string;
   id: number;
+  closeResult: string;
   // postBlog = NgForm;
-  data={
+  data = {
     id: 0,
     title: 'title1',
     imageurl:
@@ -33,7 +39,7 @@ export class BlogEditComponent implements OnInit {
     date: '12-12-12',
   };
   @ViewChild('content') modalRef: TemplateRef<any>;
-  @ViewChild('postBlog') postBlog=NgForm;
+  @ViewChild('postBlog') postBlog = NgForm;
 
   // blogs = {
   //   id: 0,
@@ -52,14 +58,11 @@ export class BlogEditComponent implements OnInit {
     public BlogService: BlogService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-
-  }
+  ) {}
 
   ngOnInit() {
-      this.getData();
-      console.log(this.parentID);
-      
+    this.getData();
+    console.log(this.parentID);
 
     this.languageList = [
       { language_id: 1, language_text: 'java' },
@@ -75,6 +78,7 @@ export class BlogEditComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true,
     };
+    
   }
 
   open(blogContent) {
@@ -101,23 +105,17 @@ export class BlogEditComponent implements OnInit {
   }
 
   onSubmit(blogFormContent) {
-    console.log(blogFormContent);
+    this.modalService.dismissAll();
     let time = new Date().toString();
-    this.BlogService.getEditedJob(
-      this.id,
-      blogFormContent.title,
-      blogFormContent.imageurl,
-      blogFormContent.description,
-      blogFormContent.author,
-      blogFormContent.languages,
-      time
-    );
-    this.router.navigate(['/blogs'], { relativeTo: this.route });
+    blogFormContent.id = this.parentID;
+    blogFormContent.date = time; 
+    this.BlogService.getEditedJob(blogFormContent);
+     console.log(blogFormContent);
+     this.router.navigate(['/myblog'], { relativeTo: this.route });
+ 
   }
-  getData(){
-    
-    this.data= this.BlogService.getBlogId(this.parentID);
+  getData() {
+    this.data = this.BlogService.getBlogId(this.parentID);
     console.log(this.data);
-    
   }
 }

@@ -1,7 +1,5 @@
-<!-- 
-    
-        <form #postBlog="ngForm" (ngSubmit)="onSubmit(postBlog.value)">
-<div class="modal-header">
+<!--<ng-template #content let-modal>
+    <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Title</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">×</span>
@@ -9,6 +7,8 @@
     </div>
 
     <div class="modal-body">
+        <form #postBlog="ngForm" (ngSubmit)="onSubmit(postBlog.value)">
+
             <div class="con">
                 <div class="field-set">
 
@@ -58,85 +58,30 @@
     </div>
 
 
+</ng-template>
 
 
 
-<hr>
+<hr>-->
 
 
 
-    <!-- <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Edit</h4>
- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">×</span>
-        </button>
-    </div>
- 
-    <div class="modal-body">
-<form #postBlog="ngForm" (ngSubmit)="onSubmit(postBlog.value)">
+<!-- <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
 
-    <div class="con">
-        <div class="field-set">
+<div class="modal-body">
+    <form #postBlog="ngForm" (ngSubmit)="onSubmit(postBlog.value)">
 
-            <label for="title">Title</label>
-            <input type="text" name="title" ngModel="{{data.title}}" required title #title="ngModel">
-
-            <br>
-            <br>
-            <div>
-                <label for="description">Description</label>
-                <ckeditor ngModel="{{data.description}}" [editor]="Editor" id="description" name="description"
-                    #desciption="ngModel">
-                </ckeditor>
-            </div>
-
-            <div>
-
-                <label for="image">Image URL</label>
-                <input type="text" name="imageurl" ngModel="{{data.imageurl}}" required imageurl
-                    #imageurl="ngModel">
-
-            </div>
-            <div class="col-mg-5">
-                <img [src]="imageurl.value" style="max-width: 500px; max-height: 500px;">
-            </div>
-            <br>
-            <div>
-                <label for="languages">languages:</label>
-                <ng-multiselect-dropdown class="select" [placeholder]="'Select'" [settings]="languageSettings"
-                    [data]="languageList" [(ngModel)]="data.languages" name="languages">
-                </ng-multiselect-dropdown>
-            </div>
-            <br><br>
-            <div>
-                <label for="author">Author</label>
-               <input type="text" name="author" ngModel="{{LoginService.uname}}" readonly> -->
-            <!-- </div>
-            <br><br>
-
-            <div class="modal-footer">
-            <button class="log-in"  type="submit" [disabled]="!postBlog.valid"> Publish</button>
-            </div>
-        </div>
-    </div>
-</form>  --> 
-
-<ng-template #editProfileModal let-modal>
-    <div class="modal-header">
-     <h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
-     <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-     </button>
-    </div>
-    
-    <div class="modal-body">
-     <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
         <div class="con">
             <div class="field-set">
-    
+
                 <label for="title">Title</label>
                 <input type="text" name="title" ngModel="{{data.title}}" required title #title="ngModel">
-    
+
                 <br>
                 <br>
                 <div>
@@ -145,13 +90,13 @@
                         #desciption="ngModel">
                     </ckeditor>
                 </div>
-    
+
                 <div>
-    
+
                     <label for="image">Image URL</label>
                     <input type="text" name="imageurl" ngModel="{{data.imageurl}}" required imageurl
                         #imageurl="ngModel">
-    
+
                 </div>
                 <div class="col-mg-5">
                     <img [src]="imageurl.value" style="max-width: 500px; max-height: 500px;">
@@ -166,13 +111,72 @@
                 <br><br>
                 <div>
                     <label for="author">Author</label>
-                   <input type="text" name="author" ngModel="{{LoginService.uname}}" readonly> -->
-               </div>
-            
-      <div class="modal-footer">
-       <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Close</button>
-       <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-     </form>
+                    <input type="text" name="author" ngModel="{{LoginService.uname}}" readonly> -->
+<!-- </div>
+                <br><br>
+
+                <div class="modal-footer">
+                    <button class="log-in" type="submit" [disabled]="!postBlog.valid"> Publish</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>  -->
+
+
+
+    <div class="container">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+  
     </div>
-   </ng-template>
+    <form #postBlog="ngForm" (ngSubmit)="onSubmit(postBlog.value)">
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" ngModel="{{data.title}}" required title #title="ngModel">
+
+                <br>
+                <br>
+                <div>
+                    <label for="description">Description</label>
+                    <ckeditor ngModel="{{data.description}}" [editor]="Editor" id="description" name="description"
+                        #desciption="ngModel">
+                    </ckeditor>
+                </div>
+
+                <div>
+
+                    <label for="image">Image URL</label>
+                    <input type="text" name="imageurl" ngModel="{{data.imageurl}}" required imageurl
+                        #imageurl="ngModel">
+
+                </div>
+                <div class="col-mg-5">
+                    <img [src]="imageurl.value" style="max-width: 500px; max-height: 500px;">
+                </div>
+                <br>
+                <div>
+                    <label for="languages">languages:</label>
+                    <ng-multiselect-dropdown class="select" [placeholder]="'Select'" [settings]="languageSettings"
+                        [data]="languageList" [(ngModel)]="data.languages" name="languages">
+                    </ng-multiselect-dropdown>
+                </div>
+                <br><br>
+                <div>
+                    <label for="author">Author</label>
+                    <input type="text" name="author" ngModel="{{LoginService.uname}}" readonly>
+                
+                </div>
+            </div>
+       
+        
+            <div class="modal-footer">
+                <button class="log-in" type="submit" > Publish</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+

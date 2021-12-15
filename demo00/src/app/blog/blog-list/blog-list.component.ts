@@ -3,6 +3,7 @@ import { BlogService } from 'src/app/blog.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BlogEditComponent } from '../blog-edit/blog-edit.component';
+import { LoginService } from 'src/app/login.service';
 
 @Component({
   selector: 'app-blog-list',
@@ -11,12 +12,13 @@ import { BlogEditComponent } from '../blog-edit/blog-edit.component';
 })
 export class BlogListComponent implements OnInit {
   modelOpen = false;
-  
+
   constructor(
+    public loginService:LoginService,
     public BlogService: BlogService,
     private router: Router,
     private route: ActivatedRoute,
-    private modelService:NgbModal
+    private modelService: NgbModal
   ) {}
 
   ngOnInit() {}
@@ -24,25 +26,29 @@ export class BlogListComponent implements OnInit {
   onclick(id: number) {
     this.router.navigate([id], { relativeTo: this.route });
   }
-  onEdit(id: number,content) {
-    
-    
-    const modalRef = this.modelService.open(BlogEditComponent,
-      {
-        scrollable: true,
-        
-      });
-      modalRef.componentInstance.parentID =id;
-      modalRef.result.then((result) => {
-        console.log(result);
-      }, (reason) => {
-      });
+  onEdit(id: number, content) {
+    // if (this.loginService.uname != '') {
+     
+    //   const ref = this.modelService.open(BlogEditComponent, {
+    //     size: 'lg',
+    //     backdrop: false,
+    //   });
+    //   ref.componentInstance.parentID = id;
+    //   ref.result.then(
+    //     (result) => {
+    //       console.log(result);
+    //     },
+    //     (reason) => {}
+    //   );
+    // } else {
+    //   alert('Login To Access');
+    //   this.router.navigate(['login']);
+    // }
+   
   }
+
   onDelete(data: number) {
     this.BlogService.deletedBlog(data);
   }
-  openModal(){
-   
-  }
-  
+ 
 }

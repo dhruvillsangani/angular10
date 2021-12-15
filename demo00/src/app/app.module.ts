@@ -25,6 +25,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 
@@ -32,10 +34,10 @@ const approutes: Routes = [
   // {path:'', component:HeaderComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'logout', component: LogoutComponent},
+  // { path: 'logout', component: LogoutComponent},
   { path: 'blog',component: BlogComponent, children: [
       { path: '', component: BlogListComponent },
-      { path: 'new', component: WriteBlogComponent },
+      { path: 'new', canActivate:[AuthguardService],component: WriteBlogComponent },
       { path: ':id', component: BlogDetailsComponent },
       { path: ':id/edit',canActivate:[AuthguardService], component: BlogEditComponent },
       
@@ -76,6 +78,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NgbModule,
     CKEditorModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),  
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

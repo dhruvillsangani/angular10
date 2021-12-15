@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { rejects } from 'assert';
 import { promise } from 'selenium-webdriver';
 import { AuthguardService } from './authguard.service';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  uname = 'author1';
-  loggedIn = true;
+  subject =new Subject<any>();  
+  uname = '';
+  loggedIn = false;
 
   constructor() {}
   isAuthenticated() {
@@ -24,6 +26,7 @@ export class LoginService {
   logout() {
     this.loggedIn = false;
     this.uname = '';
+   
 
   }
 
@@ -31,6 +34,7 @@ export class LoginService {
     this.uname = username;
     this.loggedIn = true;
     console.log(this.uname);
+    
   }
  
 }

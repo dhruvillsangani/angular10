@@ -35,13 +35,23 @@
                         <img [src] = "imageurl.value" style="max-width: 500px; max-height: 500px;">
                     </div>
                     <br>
-                    <div>
+                    <div class="col-xs-12 col-12 col-md-4 ">
                         <label for="languages">Languages:</label>
                         <ng-multiselect-dropdown class="select" [placeholder]="'Select'"
                             [settings]="languageSettings" [data]="languageList" ngModel name="languages">
                         </ng-multiselect-dropdown>
                     </div>
                     <br><br>
+                    <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
+                        <input
+                          class="form-control"
+                          placeholder="Datepicker"
+                          bsDatepicker
+                          ngModel name="date"
+                          #date 
+                          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-red' }">
+                    </div>
+                   <br>
                     <div>
                         <label for="author">Author</label>
                         <input type="text" name="author" ngModel="{{LoginService.uname}}" readonly>

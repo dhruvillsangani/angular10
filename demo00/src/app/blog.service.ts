@@ -58,17 +58,20 @@ export class BlogService {
     return this.arr[id];
   }
 
-  getEditedJob(id, title, imageurl, description, author, languages, date) {
-    const index = this.arr.findIndex((el) => el.id === id);
+  getEditedJob(blogFormContent) {
+    const index = this.arr.findIndex((el) => el.id === blogFormContent.id);
     this.arr[index] = {
-      id: id,
-      title: title,
-      imageurl: imageurl,
-      description: description,
-      author: author,
-      languages: languages,
-      date: date,
+      id: blogFormContent.id,
+      title: blogFormContent.title,
+      imageurl: blogFormContent.imageurl,
+      description: blogFormContent.description,
+      author: blogFormContent.author,
+      languages: blogFormContent.languages,
+      date: blogFormContent.date,
     };
+    this.subject.next();
+    console.log(this.arr);
+    
   }
 
   deletedBlog(data1) {

@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from 'src/app/login.service';
 import { BlogService } from '../../blog.service';
+import { BlogEditComponent } from '../blog-edit/blog-edit.component';
+
 
 @Component({
   selector: 'app-myblog',
@@ -14,14 +16,14 @@ export class MyblogComponent implements OnInit {
   myFinalBlog = [];
   authorName: any;
   modelOpen = false;
-  
+
 
   constructor(
     private loginService: LoginService,
     private blogService: BlogService,
     private route: ActivatedRoute,
-    private modalService: NgbModal,
-    private router : Router
+    private router : Router,
+    private modelService: NgbModal
   ) {
     this.authorName = this.loginService.uname;
     console.log('From auth component' + this.authorName);
@@ -52,8 +54,18 @@ export class MyblogComponent implements OnInit {
     this.router.navigate(['blog',id] );
   }
   onEdit(id: number) {
-    this.router.navigate(['blog',id, 'edit']);
-    console.log(id);
+      const ref = this.modelService.open(BlogEditComponent, {
+        size: 'lg',
+        backdrop: false,
+      });
+      ref.componentInstance.parentID = id;
+      ref.result.then(
+        (result) => {
+          console.log(result);
+        },
+        (reason) => {}
+      );
+  
   }
   onDelete(element){
     this.blogService.deletedBlog(element);

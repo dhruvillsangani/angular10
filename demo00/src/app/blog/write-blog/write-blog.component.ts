@@ -3,9 +3,11 @@ import { LoginService } from '../../login.service';
 import { NgForm } from '@angular/forms';
 import { BlogService } from 'src/app/blog.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-write-blog',
@@ -18,6 +20,7 @@ export class WriteBlogComponent implements OnInit {
   selectedItems = [];
   languageSettings = {};
   imageurl: string;
+  model:any;
   constructor(
     public LoginService: LoginService,
     private BlogService: BlogService,
@@ -43,10 +46,9 @@ export class WriteBlogComponent implements OnInit {
   }
 
   onSubmit(details) {
-    // here inline 43 i have added +1
+    details.date.toString();
+    console.log(details.date);
      details.id =this.BlogService.getBlogLength()
-     let time =  new Date().toString();
-     details.date = time;
     this.BlogService.addData(details);
     console.log(details);
     this.router.navigate(['../'], { relativeTo: this.route });

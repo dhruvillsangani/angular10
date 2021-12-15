@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Params } from '@angular/router';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 import { BlogService } from '../../blog.service';
 import { LoginService } from '../../login.service';
 
@@ -12,6 +13,7 @@ import { LoginService } from '../../login.service';
 export class BlogDetailsComponent implements OnInit {
   id: number;
   blogs:any;
+  subject =new Subject<any>();  
 
   constructor(private LoginService:LoginService,public BlogService:BlogService,private router:Router,
     private route:ActivatedRoute) { }
@@ -31,21 +33,25 @@ export class BlogDetailsComponent implements OnInit {
   
 
   onPrevious() {
-    if(this.blogs.id ==0) {
+
+    if(this.id == 0) {
     alert("This is first blog")
     return;
     }
     this.router.navigate(['../',this.blogs.id-1],{relativeTo: this.route});
+   
   }
 
   onNext() {
-    if(this.blogs.id == this.BlogService.getBlogLength()-1) {
+  
+    if(this.id == this.BlogService.getBlogLength()-1) {
       alert("this is last blog")
       return
+     
     }
     console.log(this.blogs.id);
-    
     this.router.navigate(['../',this.blogs.id+1],{relativeTo: this.route});
+    
   }
 
 }

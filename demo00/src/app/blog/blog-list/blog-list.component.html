@@ -1,28 +1,30 @@
 <br>
-<button class="btn btn-primary" routerLink="/blog/new">Add Blog</button>
+<button class="btn btn-primary"  routerLink="/blog/new">Add Blog</button>
 <div class="control">
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">id</th>
+      <th scope="col">Id</th>
       <th scope="col">Title</th>
       <th scope="col">Author</th>
+      <th scope="col">Publish Date</th>
       <th scope="col">Languages</th>
-      <th scope="col" style="column-span: 2;">  Action</th>
+      <!-- <th scope="col" style="column-span: 2;">  Actions</th> -->
 
     </tr>
   </thead>
   <tbody>
 <!-- changed logic for resolving deleting bug -->
     <tr *ngFor="let element of BlogService.arr; let i = index">
-      <td (click)="onclick(i)">{{i}}</td>
-      <td (click)="onclick(i)">{{element.title}}</td>
-      <td (click)="onclick(i)"> {{element.author}}</td>
-      <td (click)="onclick(i)" ><div *ngFor="let item of element.languages">{{item.language_text}}</div></td>
-      <td>
-        <a (click)="onEdit(i)" style="color: blue;" class="space" >Edit</a>  
-       <a (click)="onDelete(element)" style="color: rgb(250, 1, 1);">Delete</a>
-      </td>
+      <td (click)="onclick(i)" style="font-weight: bold;">{{i+1}}</td>
+      <td (click)="onclick(i)" style="font-weight: bold;">{{element.title}}</td>
+      <td (click)="onclick(i)" style="font-weight: bold;"> {{element.author}}</td>
+      <th (click)="onclick(i)"style="font-weight: bold;">{{element.date|date}}</th>
+      <td (click)="onclick(i)" style="font-weight: bold;"><div *ngFor="let item of element.languages">{{item.language_text}}</div></td>
+      <!-- <td>
+       <a (click)="onEdit(i,content)"  style="color: blue;" class="space"  >Edit</a>  
+       <a (click)="onDelete(element)" style="color: rgb(250, 1, 1);">Delete</a> 
+      </td> -->
     </tr>
 
   </tbody>

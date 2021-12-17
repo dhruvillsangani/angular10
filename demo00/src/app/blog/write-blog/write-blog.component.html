@@ -1,4 +1,6 @@
-<div class="container" class="border border-dark">
+<div *ngIf="loginService.uname !== ''" >
+
+<div class="container" class="border border-dark" >
     <div class="overlay">
     
         <form #postBlog="ngForm" (ngSubmit)="onSubmit(postBlog.value)">
@@ -21,10 +23,7 @@
                         #desciption="ngModel"
                          >
                         </ckeditor>
-                        <!-- <textarea name="description" id="description" rows="2" cols="20" ngModel required description
-                            #description="ngModel"></textarea> -->
                     </div>
-    
                     <div>
     
                         <label for="image">Image URL</label>
@@ -50,11 +49,16 @@
                           ngModel name="date"
                           #date 
                           [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-red' }">
+                        
+                         <!-- <input type="text"  class="form-control calendar" placement="right" bsDatepicker 
+                         #dobDate="bsDatepicker" [bsConfig]="bsConfig" placeholder="YYYY-MM-DD"
+                         ngModel  name="date" #date> -->
+     
                     </div>
                    <br>
                     <div>
                         <label for="author">Author</label>
-                        <input type="text" name="author" ngModel="{{LoginService.uname}}" readonly>
+                        <input type="text" name="author" ngModel="{{loginService.uname}}" readonly>
                     </div>
                     <br><br>
                    
@@ -67,3 +71,11 @@
         </form>
     </div>
     </div>
+</div>
+
+
+<div #first *ngIf="loginService.uname == ''"  >
+    <p > {{ yourfunction()}} </p>
+</div>
+
+ 

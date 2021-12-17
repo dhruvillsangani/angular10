@@ -34,21 +34,19 @@ const approutes: Routes = [
   // {path:'', component:HeaderComponent},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  // { path: 'logout', component: LogoutComponent},
-  { path: 'blog',component: BlogComponent, children: [
+  { path: 'logout', component: LogoutComponent},
+  { path: 'blog', component: BlogComponent, children: [
       { path: '', component: BlogListComponent },
-      { path: 'new', canActivate:[AuthguardService],component: WriteBlogComponent },
+      { path: 'new', canActivate: [AuthguardService], component: WriteBlogComponent },
       { path: ':id', component: BlogDetailsComponent },
-      { path: ':id/edit',canActivate:[AuthguardService], component: BlogEditComponent },
-      
+      { path: ':id/edit', canActivate: [AuthguardService], component: BlogEditComponent },
     ],
-    
   },
   { path: 'myblog', component: MyblogComponent}
 ];
 
 // AoT requires an exported function for factories
-export function HttpLoaderFactory(httpClient: HttpClient) {
+export function HttpLoaderFactory(httpClient: HttpClient): any {
   return new TranslateHttpLoader(httpClient);
 }
 
@@ -66,7 +64,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MyblogComponent,
     FooterComponent,
     LogoutComponent,
-  
   ],
   imports: [
     BrowserModule,
@@ -79,7 +76,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CKEditorModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    BsDatepickerModule.forRoot(),  
+    BsDatepickerModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -87,7 +84,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    
+
   ],
   providers: [AuthguardService],
   bootstrap: [AppComponent],

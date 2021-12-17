@@ -6,8 +6,8 @@ import { Subject } from 'rxjs';
 })
 export class BlogService {
   constructor() {}
-  obj:any;
-  subject =new Subject<any>();  
+  obj: any;
+  subject = new Subject<any>();
 
   arr = [
     {
@@ -43,22 +43,22 @@ export class BlogService {
     },
   ];
 
-  addData(details) {
+  addData(details): any {
     console.log(details);
     this.arr.push(details);
     console.log(this.arr.length);
   }
 
-  getBlogLength() {
+  getBlogLength(): any {
     return this.arr.length;
     console.log(this.arr.length);
   }
 
-  getBlogId(id: number) {
+  getBlogId(id: number): any {
     return this.arr[id];
   }
 
-  getEditedJob(blogFormContent) {
+  getEditedJob(blogFormContent): any {
     const index = this.arr.findIndex((el) => el.id === blogFormContent.id);
     this.arr[index] = {
       id: blogFormContent.id,
@@ -71,16 +71,14 @@ export class BlogService {
     };
     this.subject.next();
     console.log(this.arr);
-    
   }
 
-  deletedBlog(data1) {
+  deletedBlog(data1): any {
     const index = this.arr.indexOf(data1);
     this.arr.splice(index, 1);
     this.subject.next();
     console.log(this.arr.length);
-    // this.getBlogLength();
-    
+
   }
 
 

@@ -56,13 +56,13 @@ export class SignupComponent implements OnInit {
       }
     );
   }
-  onsubmit() {
-    let forms1 = this.signupForm.value;
+  onsubmit(): void {
+    const forms1 = this.signupForm.value;
     console.log(forms1);
     this.router.navigate(['/login'], { relativeTo: this.route });
   }
 
-  password(formGroup: FormGroup) {
+  password(formGroup: FormGroup): any {
     const { value: password } = formGroup.get('password');
     const { value: confirmPassword } = formGroup.get('confirmpassword');
     return password === confirmPassword ? null : { passwordNotMatch: true };

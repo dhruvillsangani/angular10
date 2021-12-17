@@ -15,7 +15,7 @@
   </thead>
   <tbody>
 <!-- changed logic for resolving deleting bug -->
-    <tr *ngFor="let element of BlogService.arr; let i = index">
+    <tr *ngFor="let element of blogService.arr; let i = index">
       <td (click)="onclick(i)" style="font-weight: bold;">{{i+1}}</td>
       <td (click)="onclick(i)" style="font-weight: bold;">{{element.title}}</td>
       <td (click)="onclick(i)" style="font-weight: bold;"> {{element.author}}</td>
@@ -30,4 +30,4 @@
   </tbody>
 </table>
 </div>
-<button class="btn" (click)="openModal()" *ngFor="let element of BlogService.arr; let i = index"> </button>
+<button class="btn" (click)="openModal()" *ngFor="let element of blogService.arr; let i = index"> </button>

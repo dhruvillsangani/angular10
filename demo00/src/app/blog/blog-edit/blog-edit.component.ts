@@ -27,6 +27,7 @@ export class BlogEditComponent implements OnInit {
   closeModal: string;
   id: number;
   closeResult: string;
+ 
   // postBlog = NgForm;
   data = {
     id: 0,
@@ -54,15 +55,18 @@ export class BlogEditComponent implements OnInit {
 
   constructor(
     public modalService: NgbModal,
-    public LoginService: LoginService,
-    public BlogService: BlogService,
+    public loginService: LoginService,
+    public blogService: BlogService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): any {
     this.getData();
     console.log(this.parentID);
+    const date = this.data.date.toString();
+    console.log(date.toString());
+
 
     this.languageList = [
       { language_id: 1, language_text: 'java' },
@@ -78,10 +82,9 @@ export class BlogEditComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true,
     };
-    
   }
 
-  open(blogContent) {
+  open(blogContent): any {
     this.modalService
       .open(blogContent, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
@@ -104,18 +107,15 @@ export class BlogEditComponent implements OnInit {
     }
   }
 
-  onSubmit(blogFormContent) {
+  onSubmit(blogFormContent): any {
     this.modalService.dismissAll();
-    let time = new Date().toString();
     blogFormContent.id = this.parentID;
-    blogFormContent.date = time; 
-    this.BlogService.getEditedJob(blogFormContent);
-     console.log(blogFormContent);
-     this.router.navigate(['/myblog'], { relativeTo: this.route });
- 
+    this.blogService.getEditedJob(blogFormContent);
+    console.log(blogFormContent);
+    this.router.navigate(['/myblog'], { relativeTo: this.route });
   }
-  getData() {
-    this.data = this.BlogService.getBlogId(this.parentID);
+  getData(): any {
+    this.data = this.blogService.getBlogId(this.parentID);
     console.log(this.data);
   }
 }

@@ -14,13 +14,13 @@ import {
   providedIn: 'root',
 })
 export class AuthguardService {
-  constructor(private LoginService: LoginService, private route: Router) {}
+  constructor(private loginService: LoginService, private route: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     router: RouterStateSnapshot
   ): boolean | Observable<boolean> | Promise<boolean> {
-    return this.LoginService.isAuthenticated().then(
+    return this.loginService.isAuthenticated().then(
       (authenticated: boolean) => {
         if (authenticated) {
           return true;

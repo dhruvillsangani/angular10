@@ -7,7 +7,9 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-write-blog',
@@ -20,15 +22,20 @@ export class WriteBlogComponent implements OnInit {
   selectedItems = [];
   languageSettings = {};
   imageurl: string;
-  model:any;
+  model: any;
+  // bsConfig: Partial<BsDatepickerConfig> = {
+// 	dateInputFormat: 'YYYY-MM-DD',
+// 	showWeekNumbers: false,
+// 	containerClass: 'theme-dark-blue'
+// };
   constructor(
-    public LoginService: LoginService,
-    private BlogService: BlogService,
+    public loginService: LoginService,
+    private blogService: BlogService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): any {
     this. languageList = [
       { language_id: 1, language_text: 'java' },
       { language_id: 2, language_text: 'Javascript' },
@@ -44,14 +51,23 @@ export class WriteBlogComponent implements OnInit {
       allowSearchFilter: true,
     };
   }
+  yourfunction(){
+    this.router.navigate(['/login'], { relativeTo: this.route });
 
-  onSubmit(details) {
+  }
+
+  onSubmit(details): any {
+    if (this.loginService.uname === ''){
+      alert('login to add blog');
+      this.router.navigate(['/login'], { relativeTo: this.route });
+    }
+    else{
     details.date.toString();
     console.log(details.date);
-     details.id =this.BlogService.getBlogLength()
-    this.BlogService.addData(details);
+    details.id = this.blogService.getBlogLength();
+    this.blogService.addData(details);
     console.log(details);
     this.router.navigate(['../'], { relativeTo: this.route });
   }
- 
+  }
 }

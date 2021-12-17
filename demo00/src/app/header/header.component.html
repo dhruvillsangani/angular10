@@ -9,11 +9,11 @@
     </select>
   </label>
   <div class="header-right">
-    <a routerLinkActive="active" class="myblog" routerLink="myblog">{{'HOME.MyBlog'| translate}}</a>
-    <a [hidden]="LoginService.uname != ''" class="login"routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+    <a routerLinkActive="active" class="myblog" (click)="onMyBlog()" routerLink="myblog">{{'HOME.MyBlog'| translate}}</a>
+    <a [hidden]="loginService.uname != ''" class="login"routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
       routerLink="login">{{'HOME.login'| translate}}</a>
-      <a routerLinkActive="active" class="logout" [hidden]="!LoginService.uname" (click)="onLogout()"  >{{'HOME.logout'| translate}}</a>
-    <a *ngIf="LoginService.uname" class="welcome">{{'HOME.Welcome'| translate}} {{LoginService.uname}} </a>
+      <a routerLinkActive="active" class="logout" [hidden]="!loginService.uname" (click)="onLogout()"  >{{'HOME.logout'| translate}}</a>
+    <a *ngIf="loginService.uname" class="welcome">{{'HOME.Welcome'| translate}} {{loginService.uname}} </a>
   </div>
 
   

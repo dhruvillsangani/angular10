@@ -14,41 +14,22 @@ export class BlogListComponent implements OnInit {
   modelOpen = false;
 
   constructor(
-    public loginService:LoginService,
-    public BlogService: BlogService,
+    public loginService: LoginService,
+    public blogService: BlogService,
     private router: Router,
     private route: ActivatedRoute,
     private modelService: NgbModal
   ) {}
 
-  ngOnInit() {}
+  ngOnInit(): any {}
 
-  onclick(id: number) {
+  onclick(id: number): any {
     this.router.navigate([id], { relativeTo: this.route });
   }
-  onEdit(id: number, content) {
-    // if (this.loginService.uname != '') {
-     
-    //   const ref = this.modelService.open(BlogEditComponent, {
-    //     size: 'lg',
-    //     backdrop: false,
-    //   });
-    //   ref.componentInstance.parentID = id;
-    //   ref.result.then(
-    //     (result) => {
-    //       console.log(result);
-    //     },
-    //     (reason) => {}
-    //   );
-    // } else {
-    //   alert('Login To Access');
-    //   this.router.navigate(['login']);
-    // }
-   
+  onEdit(id: number, content): any {
   }
 
-  onDelete(data: number) {
-    this.BlogService.deletedBlog(data);
+  onDelete(data: number): any {
+    this.blogService.deletedBlog(data);
   }
- 
 }

@@ -8,17 +8,13 @@ import { LoginService } from 'src/app/login.service';
   styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent implements OnInit {
-  
 
-  constructor(private LoginService:LoginService,private router:Router,
-    private route:ActivatedRoute) {
-     
+  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute) {
      }
 
   ngOnInit(): void {
-     
-    //  this.LoginService.logout();
-    // this.router.navigate(['blog']);
+    this.loginService.logout();
+    this.router.navigate(['blog']);
   }
 
 }

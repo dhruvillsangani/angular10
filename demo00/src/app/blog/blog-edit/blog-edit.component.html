@@ -135,9 +135,22 @@
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" ngModel="{{data.title}}" required title #title="ngModel">
+                <br>
+                <br>
+                <div class="col-xs-12 col-12 col-md-4 form-group mb-5">
+                    <!-- <input
+                      class="form-control"
+                      placeholder="Datepicker"
+                      bsDatepicker
+                      ngModel="{{data.date}}"
+                       name="date"
+                      #date 
+                      [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-red' }"> -->
+                      <input type="date"  class="form-control" ngModel="{{data.date}}"
+                      name="date"
+                     #date  >
 
-                <br>
-                <br>
+                </div>
                 <div>
                     <label for="description">Description</label>
                     <ckeditor ngModel="{{data.description}}" [editor]="Editor" id="description" name="description"
@@ -162,10 +175,11 @@
                         [data]="languageList" [(ngModel)]="data.languages" name="languages">
                     </ng-multiselect-dropdown>
                 </div>
+               
                 <br><br>
                 <div>
                     <label for="author">Author</label>
-                    <input type="text" name="author" ngModel="{{LoginService.uname}}" readonly>
+                    <input type="text" name="author" ngModel="{{loginService.uname}}" readonly>
                 
                 </div>
             </div>

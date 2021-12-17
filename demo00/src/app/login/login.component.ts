@@ -9,28 +9,26 @@ import { LoginService } from '../login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  isusername: boolean = true;
-  isemail: boolean = false;
+  isusername = true;
+  isemail = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private LoginService: LoginService
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {}
 
-  onsubmit(contactForm) {
-    this.LoginService.getname(contactForm.username);
-    // this.LoginService.getname(contactForm.email);
-
+  onsubmit(contactForm): any {
+    this.loginService.getname(contactForm.username);
     this.router.navigate(['/blog'], { relativeTo: this.route });
   }
-  onChange(value) {
-    if (value == 'username') {
+  onChange(value): void {
+    if (value === 'username') {
       this.isusername = true;
       this.isemail = false;
-    } else if (value == 'email') {
+    } else if (value === 'email') {
       this.isemail = true;
       this.isusername = false;
     }

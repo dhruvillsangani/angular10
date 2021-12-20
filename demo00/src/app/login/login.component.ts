@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   onsubmit(contactForm): any {
     this.loginService.getname(contactForm.username);
+    this.loginService.getname(contactForm.email);
     this.router.navigate(['/blog'], { relativeTo: this.route });
   }
   onChange(value): void {

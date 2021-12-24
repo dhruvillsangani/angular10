@@ -7,28 +7,38 @@
   <div class="modal-body">
     <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
 
-              <div *ngFor="let item of this.fetchDetail.arr">
+              <div *ngFor="let item of this.fetchDetail.arr" >
+                
               <div>
                 <label for="jobtitle">Job Title</label>
-                <input type="text" class="form-control" name="jobTitle"  >
+                <input type="text" class="form-control"  name="jobTitle" [(ngModel)]="details.jobTitle" >
               </div>
 
               <div>
                 <label for="jobtitle">Employment Type</label>
-                <input type="text" class="form-control" name="employmentTypeName">
+                <input type="text" class="form-control" name="employmentTypeName" [(ngModel)]="details.employmentTypeName">
             </div>
 
             <div>
                 <label>Company Name</label>
-                <input type="text" class="form-control" name="companyName">
+                <input type="text" class="form-control" name="companyName" [(ngModel)]="details.companyName">
             </div>
 
-            <div>
-                <h2>Job Location</h2>
+            <div >
+                <h4>Job Location</h4>
+                <div>
+                  <label>Country</label>
+                  <select  name="countryName"  [(ngModel)]="details.countryName">
+                    <option  *ngFor="let item of this.fetchDetail.expcountry" (click)="onSelectCountry(expcountry.label)" [ngValue]="item.label" >
+                    {{ item.label }}
+                    </option>
+                </select>
+                </div>
+
             </div>
 
               </div>
-
+          
 
   <div class="modal-footer">
     <button class="log-in" type="submit" class="btn btn-outline-dark" [disabled]="!contactForm.valid"> Save</button>

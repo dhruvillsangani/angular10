@@ -65,8 +65,9 @@ export class PersonalDashboardComponent implements OnInit {
 
   onEditExperience(ExperienceId){
      console.log(ExperienceId);
-     this.modelService.open(OnEditExperienceModalComponent,{size: 'lg', backdrop: 'static'});
-            
+    const modalref = this.modelService.open(OnEditExperienceModalComponent,{size: 'lg', backdrop: 'static'});
+     modalref.componentInstance.ExperienceId = ExperienceId;  
+     this.fetchdetails.experienceConuntry();      
   }
   
 }

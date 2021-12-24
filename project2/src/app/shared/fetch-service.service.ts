@@ -11,6 +11,7 @@ export class FetchServiceService {
   image:any;
   governatePosts: any;
   postOfficeCity: any;
+  expcountry: any;
   constructor(private http:HttpClient) { }
   access_token:any;
   country:any;
@@ -119,6 +120,16 @@ export class FetchServiceService {
       console.log(editDetails);
 
       
+  }
+
+  experienceConuntry(){
+    this.http.get('http://103.86.16.120:8086/pub/api/taxonomy/2/get-taxonomy/Countries')
+    .subscribe(countryies=>{
+     
+     this.expcountry = countryies;
+     console.log(this.expcountry);
+
+    })
   }
 
 }

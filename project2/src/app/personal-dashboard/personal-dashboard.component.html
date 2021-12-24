@@ -1,0 +1,140 @@
+<div     class="container" class="col-lg-12 col-md-12 col-sm-12 crad-light" style="margin-top:50px">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <ul class="side-nav" style="list-style-type:none;">
+                <li class="border-top-0">
+                    <a routerlinkactive="active" href="/personal-dashboard" class="active">My Profile</a>
+                </li>
+                <li>
+                    <a routerlinkactive="active" href="/personal-dashboard/jobs">My Jobs</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 card-body tab-content float-left" style="border: 2px; border-style: solid;
+        border-width: 5px; " *ngFor="let elements of this.fetchdetails.arr">
+        <div class="float-left">
+            <img [src]="this.fetchdetails.image" class="img-fluid" style="max-width: 100px; top: -40px;
+            position: absolute;">
+           <div>{{elements.user.firstName}} {{elements.user.secondName}} {{elements.user.familyName}}</div> <a (click)="onEdit()"> <i  class="fa fa-pencil" aria-hidden="true"></i></a>
+            <div>{{elements.user.nationality.label}}|{{elements.user.mobileNumber}}|{{elements.user.email}} </div> 
+            <div>{{elements.user.headline}}</div>
+
+        <div>Nationality:{{elements.user.nationality.label}}  &nbsp;&nbsp;&nbsp; Age:{{elements.user.dateOfBirth|date}} &nbsp;&nbsp;&nbsp; Married: -{{elements.user.married}} <br> ID Number:{{elements.user.nationalId}} &nbsp;&nbsp;&nbsp; Gender:{{elements.user.gender}} &nbsp;&nbsp;&nbsp; Departments: -{{elements.user.dependentsNo}}</div>
+       <br>
+       <div> Residental Addresss : &nbsp;&nbsp;&nbsp; {{elements.user.mobileNumber}} <br> {{elements.user.wilayat.label}} &nbsp;&nbsp;&nbsp; {{elements.user.email}}
+           <div> 
+               &nbsp;&nbsp; <a href="{{elements.user.websiteUrl}}"><i *ngIf="elements.user.websiteUrl !== ''" class="fa fa-link"  aria-hidden="true"></i></a>
+               &nbsp;&nbsp; <a href="{{elements.user.twitter}}" > <i *ngIf="elements.user.twitter !== ''" class="fa fa-twitter" aria-hidden="true"></i></a>
+               &nbsp;&nbsp;<a href="{{elements.user.instagram}}"> <i *ngIf="elements.user.instagram !== ''" class="fa fa-instagram" aria-hidden="true"></i></a>
+               &nbsp;&nbsp;<a href="{{elements.user.facebook}}"><i *ngIf="elements.user.facebook !== ''"class="fa fa-facebook-square" aria-hidden="true"></i></a>
+           </div>
+</div>
+          
+
+        </div>
+
+        </div>
+
+<br><br>
+        <div  class="container" class="card mb-4">
+
+            <div class="row">
+                
+                <div class="col-lg-9 col-md-9 col-sm-9 card-body tab-content float-left" style="border: 2px; border-style: solid;
+                border-width: 5px;     margin-left: 374px;
+    margin-top: 39px; ">
+                      <a (click)="onEditProfile()" > <i  class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                <div class="tab-pane active">
+                    <h3>Profile Summary </h3>
+                    <br>
+                    <div [hidden]="this.fetchdetails.arr[9] !== {}">
+                    <label class="text-red" >
+                        <b style="color: red;">Required</b>
+                    </label>
+
+                    <p class="alert alert-primary" >
+                        Start edit your summary profile to highlight your unique qualifications and make a positive  first impression. 
+                    </p>
+                </div>
+
+                <div *ngFor="let item of this.fetchdetails.arr">
+                       {{item.profileSummary.summary}}
+                </div>
+                </div>
+        
+                </div>
+        
+            </div>
+        
+        </div>
+
+
+        <div *ngFor="let elements of this.fetchdetails.arr" class="container" class="card mb-4">
+
+            <div class="row">
+                
+                <div class="col-lg-9 col-md-9 col-sm-9 card-body tab-content float-left" style="border: 2px; border-style: solid;
+                border-width: 5px; margin-left: 335px; ">
+
+                <div class="tab-pane active">
+                    <button style=" color: cadetblue;"><i class="fa fa-plus"></i>ADD</button>
+                    <h3>Experience </h3>
+                    <br>
+                    <div [hidden]="elements.experienceProfile !== []">
+                    <label class="text-red" >
+                        <b style="color: red;">Required</b>
+                    </label>
+
+                    <p class="alert alert-primary" >
+                        Start edit your summary profile to highlight your unique qualifications and make a positive  first impression. 
+                    </p>
+                </div>
+
+                <div style="color: rgb(82, 255, 197);" class="row mt-3 ng-star-inserted" *ngFor="let item of elements.experienceProfile">
+                    <a (click)="onEditExperience(item.id)" > <i  class="fa fa-pencil" aria-hidden="true"></i></a>
+                    {{item.startDate|date: 'MM-yyyy'}}-{{item.endDate|date: 'MM-yyyy'}} &nbsp;&nbsp;&nbsp; {{item.jobTitle}}<br>
+                    {{item.employmentTypeName}} &nbsp;&nbsp;&nbsp;  {{item.companyName}},{{item.wilayatName}},{{item.countryName}}<br>
+                    
+                    
+                </div>
+
+               
+                </div>
+        
+                </div>
+        
+            </div>
+        
+        </div>
+
+
+
+
+
+
+
+    </div>
+</div>
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+<!-- <div >
+        <ul class="side-nav">
+            <li class="border-top-0">
+                <a>MyProfile</a>
+            </li>
+            <li >
+                <a>My Jobs</a>
+            </li>
+        </ul>
+    </div> -->

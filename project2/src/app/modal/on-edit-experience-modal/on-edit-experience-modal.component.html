@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit Profile Summary</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
+
+              <div *ngFor="let item of this.fetchDetail.arr">
+              <div>
+                <label for="jobtitle">Job Title</label>
+                <input type="text" class="form-control" name="jobTitle"  >
+              </div>
+
+              <div>
+                <label for="jobtitle">Employment Type</label>
+                <input type="text" class="form-control" name="employmentTypeName">
+            </div>
+
+            <div>
+                <label>Company Name</label>
+                <input type="text" class="form-control" name="companyName">
+            </div>
+
+            <div>
+                <h2>Job Location</h2>
+            </div>
+
+              </div>
+
+
+  <div class="modal-footer">
+    <button class="log-in" type="submit" class="btn btn-outline-dark" [disabled]="!contactForm.valid"> Save</button>
+
+    <!-- <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button> -->
+  </div>
+  </form>
+

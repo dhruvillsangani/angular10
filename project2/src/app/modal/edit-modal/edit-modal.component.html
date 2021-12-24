@@ -1,0 +1,213 @@
+<div class="modal-header">
+    <h4 class="modal-title">Edit User Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
+     
+        <div *ngFor="let elements of this.fetchdetails.arr">
+           
+        <div>
+                <img [src]="this.fetchdetails.image" style="max-width: 200px;">
+                 <input type="file" (change)="onFileSelected($event)">
+                 <button type="button" (click)="onUpload()">Upload</button>
+         </div>
+
+              <br>
+              <h3>Personal Details</h3>
+
+         <div >
+             <label for="title">Title</label>
+                <select id="mrms">
+                  <option value="mr">Mr</option>
+                  <option value="ms">Ms</option>
+                </select>
+
+                &nbsp;&nbsp;
+                <label class="form-group required" for=username>First Name 
+                <input type="text" name="firstName" ngModel="{{elements.user.firstName}}" firstName required #firstName="ngModel">
+               </label>
+               &nbsp;&nbsp;
+                <label  class="form-group required" for=secondName>Second Name 
+                <input type="text" name="secondName" ngModel="{{elements.user.secondName}}" secondName required #secondName="ngModel">
+               </label>
+                &nbsp;&nbsp;
+
+                <label for=thirdName>Third Name </label> 
+                <input type="text" name="thirdName" ngModel="{{elements.user.thirdName}}" thirdName >
+                &nbsp;&nbsp;
+       
+            </div>
+            
+            <div>
+                <label class="form-group required" for=familyName>Family Name 
+                <input type="text" name="familyName" ngModel="{{elements.user.familyName}}" familyName >
+                </label> 
+                &nbsp;&nbsp;
+                <lable  class="form-group required" for=gender> Gender:
+                <select ngModel="{{elements.user.gender}}" name="gender" gender required >
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </lable>
+
+            <label for="dob">DOB:
+                <input type="date"  name="dateOfBirth"  ngModel="{{elements.user.dateOfBirth|date:'yyyy-MM-dd' }}"  id="datetimepicker" placeholder="select date">
+                &nbsp;&nbsp;
+            </label>
+
+            <label  class="form-group required" >  Nationality:
+            <select name="nationality" [(ngModel)]="elements.user.nationality.label" nationality >
+                <option  *ngFor="let item of this.fetchdetails.nationality"   [ngValue]="item.label" required>
+                {{ item.label }}
+                </option>
+            </select>
+            </label>
+    
+         <div >
+            <label class="form-group required">National ID:
+              <input type="text" name="nationalId" [(ngModel)]="elements.user.nationalId" nationalId required ngModel >
+            </label> 
+          </div>
+            <label>Married:
+              <select class="form-group required" name="married" ngModel  married required #married="ngModel">
+                <option value="" selected >Optional</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </label>
+            
+            <div  *ngFor="let elements of this.fetchdetails.arr">
+              <label>Department No:
+                <input type="number" name="dependentsNo"  [(ngModel)]="elements.user.dependentsNo"  dependentsNo  #dependentsNo="ngModel">
+              </label>
+            </div>
+          
+        
+          </div>
+
+          <h3>Home Residence</h3>
+
+          <div>
+
+            <label class="form-group required">  Country:
+              <select  name="country" (click)="onCountryChange(elements.user.country.id)" [(ngModel)]="elements.user.country.id" required >
+                  <option  *ngFor="let item of this.fetchdetails.country" (click)="onCountryChange(item.id)"  [ngValue]="item.id" >
+                  {{ item.label }}
+                  </option>
+              </select>
+
+            
+              </label>
+     
+
+            <label class="form-group required">  Governates :
+              <select   name="governorate" (click)="onGovernateChange(elements.user.governorate.id)" [(ngModel)]="elements.user.governorate.id"  required>
+                <option *ngFor="let item of wilayatFromCountry" (click)="onGovernateChange(item.id)" [ngValue]="item.id" >
+                  {{ item.label }}
+                  </option>
+              </select>
+              </label>
+
+              <label class="form-group required" >  Wilayat :
+                <select  [(ngModel)]="elements.user.wilayat.id" name="wilayat"  required   >
+                    <option  *ngFor="let item of wilayatFromGovernate"  [ngValue]="item.id" >
+                    {{item.label}} 
+                    </option>
+                </select>
+                </label>
+
+              <label>Area</label>
+              <input type="text"name="area" ngModel="{{elements.user.area}}" area  #area="ngModel" >
+
+
+          </div>
+
+          <h3>Post Address</h3>
+          <div>
+            <label>Governorate :</label>
+            <select  name="governoratePost" [(ngModel)]="elements.user.governoratePost.label" governoratePost>
+             <!-- <option value="none" selected disabled hidden>select</option>  -->
+              <option  *ngFor="let item of this.fetchdetails.governatePosts"   [ngValue]="item.label" >
+              {{ item.label }}
+              </option>
+          </select>
+
+          <div>
+            <label>Post Office City</label>
+            <select   name="postOfficeCity" [(ngModel)]="elements.user.postOfficeCity.label" postOfficeCity >
+               <!-- <option value="none" selected disabled hidden>select</option> -->
+               <option  *ngFor="let item of this.fetchdetails.postOfficeCity"   [ngValue]="item.label" >
+               {{ item.label }}
+               </option>
+           </select>
+
+          </div>
+
+          <div class="form-group mx-sm-3 mb-2">
+            <label>PO. Number</label>
+            <input type="text" name="poNumber" ngModel="{{elements.user.poNumber}}" poNumber>
+          </div>
+
+          <div>
+            <label >Box Number</label>
+            <input type="text" name="boxNumber" ngModel="{{elements.user.boxNumber}}" boxNumber>
+          </div>
+         
+          </div>
+
+
+          <h3>Communications and Social Profiles</h3>
+          <div>
+            <label  class="form-group required">Mobile Number
+              <input type="text" name="mobileNumber" ngModel="{{elements.user.mobileNumber}}" mobileNumber required>
+            </label>
+          </div>
+
+          <div>
+            <label class="form-group required">Email</label>
+            <input type="email" name="email" ngModel="{{elements.user.email}}"email required >
+          </div>
+      
+          <div>
+            <label>Website URL</label>
+            <input type="text" name="websiteUrl" ngModel="{{elements.user.websiteUrl}}" websiteUrl > 
+          </div>
+
+          <div>
+            <label>Twitter</label>
+            <input type="text" name="twitter" ngModel="{{elements.user.twitter}}" twitter> 
+
+          </div>
+
+          <div>
+            <label>Instagram</label>
+            <input type="text" name="instagram" ngModel="{{elements.user.instagram}}" instagram > 
+
+          </div> 
+
+          <div>
+            <label>Facebook</label>
+            <input type="text" name="facebook" ngModel="{{elements.user.facebook}}" facebook > 
+
+          </div>
+
+          <div class="form-group required">
+            <label>Headline</label>
+            <input type="text" name="headline" ngModel="{{elements.user.headline}}" headline > 
+
+          </div>
+
+           </div>
+          
+          <button type="submit">Submit</button> 
+    </form>
+  </div>
+  
+    
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+

@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h4 class="modal-title">Login</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
+
+              <div>
+                 <label class="email" for="username">Email: </label>
+                 <input class="email" type="email" name="email" ngModel required pattern="^[A-Za-z0-9._%+-]+@prominentpixel.com$" email
+                    #email="ngModel">
+                    <br>
+                 <span class="help-block" *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+                    **Email must ends with prominentpixel.com</span>
+              </div>
+              <br>
+              <div>
+                 <label for="password">Password: </label>
+                 <input type="password" name="password" ngModel required password #password="ngModel">
+                 <br>
+                 <span class="help-block" *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+                     ** password could not be empty</span>
+              </div>
+  <br><br>
+              <button class="log-in" type="submit" [disabled]="!contactForm.valid"> Log In </button>
+           
+           <div class="signup">
+              <br>
+              <a style="color: blue;" (click)="activeModal.close('Close click')" routerLink="/signup">link Have not any account ?</a>
+           </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  </div>

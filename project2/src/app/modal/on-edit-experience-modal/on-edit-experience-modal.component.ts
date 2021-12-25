@@ -14,12 +14,21 @@ export class OnEditExperienceModalComponent implements OnInit {
   experienceDetails: any;
   details: any;
   countryId: any;
+  EmployeeTypeId:any;
+  GovernateFromCountry:any;
+
+
   constructor(public modelService: NgbModal,public activeModal: NgbActiveModal,
     private http: HttpClient,public fetchDetail:FetchServiceService) { }
 
   ngOnInit(): void {
     // console.log(this.ExperienceId);
    this.ExperienceDetailsFromPersonalDashboard();
+
+   
+    this.onSelectCountry(this.details.countryId);
+   this.onSelectGovernates(this.details.governorateId);
+  
     
   }
   ExperienceDetailsFromPersonalDashboard(){
@@ -32,19 +41,29 @@ export class OnEditExperienceModalComponent implements OnInit {
     }
     
   }
-  onSelectCountry(label){
-      console.log(label);
+  onSelectCountry(labelId){
+      console.log(labelId);
+      this.http.get(`http://103.86.16.120:8086/pub/api/taxonomy/2/get-taxonomy-by-parent/Countries/${labelId}`)
+        .subscribe(countryChange =>{
+         this.GovernateFromCountry  = countryChange;
+         console.log(this.GovernateFromCountry);
+        } )
 
   }
+  onSelectGovernates(label){
+     console.log(label);
+     
+  }
+ 
 
   onSubmit(experienceDetails){
     this.activeModal.close();
     console.log(experienceDetails);
-    for(let item of this.fetchDetail.expcountry){
-     
-      this.countryId = this.fetchDetail.expcountry.find(x => x.label ===experienceDetails.countryName);
-      experienceDetails.countryId = this.countryId;
-    }
+    this.countryId = this.fetchDetail.expcountry.find(x => x.label ===experienceDetails.countryName);
+    experienceDetails.countryId = this.countryId.id;
+    this.EmployeeTypeId = this.fetchDetail.empType.find(x => x.label ===experienceDetails.employmentTypeName);
+    experienceDetails.employmentTypeId = this.EmployeeTypeId.employmentTypeId
+   
   
 
    

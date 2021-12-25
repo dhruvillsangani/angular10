@@ -21,36 +21,15 @@ export class PersonalDashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    
-  //  this.monthDiff();
+
   }
  
-
-
-//        monthDiff() {
-//         for(let elements of this.fetchdetails.arr){
-//             for(let item of elements.experienceProfile){
-//               console.log(item);
-              
-//               this.dateTo = item.startDate;
-//               this.dateFrom = item.endDate;
-// console.log(this.dateTo);
-
-//             }
-//         }
-  
-//     return this.dateTo.getMonth() - this.dateFrom.getMonth() + 
-//       (12 * (this.dateTo.getFullYear() - this.dateFrom.getFullYear()))
-//    }
-   
-
-
-
 
   onEdit(){
 
     this.modelService.open(EditModalComponent,{ size: 'lg', backdrop: 'static' });
-     this.fetchdetails.getCountry();
+    //  this.fetchdetails.fetchDetails();
+    this.fetchdetails.getCountry();
      this.fetchdetails.getNationality();
      this.fetchdetails.getGovernates();
      this.fetchdetails.getWilayat();
@@ -67,7 +46,9 @@ export class PersonalDashboardComponent implements OnInit {
      console.log(ExperienceId);
     const modalref = this.modelService.open(OnEditExperienceModalComponent,{size: 'lg', backdrop: 'static'});
      modalref.componentInstance.ExperienceId = ExperienceId;  
-     this.fetchdetails.experienceConuntry();      
+     this.fetchdetails.experienceConuntry(); 
+     this.fetchdetails.getExperienceGovernate();
+     this.fetchdetails.getEmployementType();     
   }
   
 }

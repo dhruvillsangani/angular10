@@ -31,7 +31,13 @@ export class EditModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchdetails.country;
-    // this.options = new DatePickerOptions();
+    this.fetchdetails.governates;
+    for(let ele of this.fetchdetails.arr){
+      this.onCountryChange(ele.user.country.id);
+     this.onGovernateChange(ele.user.governorate.id);
+    }
+  
+    
 
   }
   onSubmit(contactForm){
@@ -98,9 +104,9 @@ export class EditModalComponent implements OnInit {
 
   }
 
-  onChange(id){
-console.log(id);
-  }
+//   onChange(id){
+// console.log(id);
+//   }
 
   onCountryChange(countryId){
     console.log(countryId);
@@ -109,13 +115,12 @@ console.log(id);
         .subscribe(countryChange =>{
          this.wilayatFromCountry  = countryChange;
          console.log(this.wilayatFromCountry);
-        })
+        } )
   }
   onGovernateChange(governateId){
 
     this.http.get(`http://103.86.16.120:8086/pub/api/taxonomy/2/get-taxonomy-by-parent/Governorates/${governateId}`)
     .subscribe(governateChange =>{
-      
       this.wilayatFromGovernate = governateChange;
       console.log(this.wilayatFromGovernate);
     })

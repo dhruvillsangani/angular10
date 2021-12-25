@@ -16,8 +16,14 @@
 
               <div>
                 <label for="jobtitle">Employment Type</label>
-                <input type="text" class="form-control" name="employmentTypeName" [(ngModel)]="details.employmentTypeName">
+                <select class="form-control" name="employmentTypeName" [(ngModel)]="details.employmentTypeName">
+                 <option *ngFor="let item of this.fetchDetail.empType"  [ngValue]="item.label"  (click)="onEmpChange(item.label)">
+                      {{item.label}}
+                 </option>
+                </select>
             </div>
+
+            
 
             <div>
                 <label>Company Name</label>
@@ -26,13 +32,23 @@
 
             <div >
                 <h4>Job Location</h4>
-                <div>
+                <div >
                   <label>Country</label>
-                  <select  name="countryName"  [(ngModel)]="details.countryName">
-                    <option  *ngFor="let item of this.fetchDetail.expcountry" (click)="onSelectCountry(expcountry.label)" [ngValue]="item.label" >
+                  <select  name="countryName" (click)="onSelectCountry(details.countryId)" [(ngModel)]="details.countryName" >
+                    <option  *ngFor="let item of this.fetchDetail.expcountry" (click)="onSelectCountry(item.id)" [ngValue]="item.id" >
                     {{ item.label }}
                     </option>
                 </select>
+                </div>
+
+                <div>
+                  <label>Governorate
+                  <select  name="governorateName" [(ngModel)]="details.governorateName" (click)="onSelectGovernates(details.governorateId)">
+                    <option *ngFor="let item of GovernateFromCountry" (click)="onSelectGovernates(item.id)" [ngValue]="item.id"> 
+                      {{item.label}}
+                    </option>
+                  </select>
+                </label>
                 </div>
 
             </div>

@@ -20,6 +20,9 @@ export class FetchServiceService {
   countryId:any;
   imageID:any;
   nationality:any
+  empType:any
+  Experiencegovernates:any;
+
 
   fetchDetails(){
     for(let elements of this.tokens){
@@ -129,6 +132,21 @@ export class FetchServiceService {
      this.expcountry = countryies;
      console.log(this.expcountry);
 
+    })
+  }
+
+  getEmployementType(){
+    this.http.get('http://103.86.16.120:8086/pub/api/taxonomy/2/get-taxonomy/Employment%20Type')
+    .subscribe(emptype => {
+      this.empType = emptype;
+    })
+  }
+
+
+  getExperienceGovernate(){
+    this.http.get('http://103.86.16.120:8086/pub/api/taxonomy/2/get-taxonomy/Governorates')
+    .subscribe(Experiencegovernates=>{
+      this.Experiencegovernates = Experiencegovernates;
     })
   }
 

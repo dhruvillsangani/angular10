@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">Edit Profile Summary</h4>
+    <h4 class="modal-title">Add Profile Summary</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -7,17 +7,17 @@
   <div class="modal-body">
     <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
 
-              <div *ngFor="let item of this.fetchDetail.arr" >
+              <div>
                 
               <div>
                 <label for="jobtitle">Job Title</label>
-                <input type="text" class="form-control"  name="jobTitle" [(ngModel)]="details.jobTitle" >
+                <input type="text" class="form-control"  name="jobTitle" ngModel >
               </div>
 
               <div>
                 <label for="jobtitle">Employment Type</label>
-                <select class="form-control" name="employmentTypeName" [(ngModel)]="details.employmentTypeName">
-                 <option *ngFor="let item of this.fetchDetail.empType"  [ngValue]="item.label"  (click)="onEmpChange(item.label)">
+                <select class="form-control" name="employmentTypeName" ngModal (change)="onEmploymentTypeChange($event)"  >
+                 <option *ngFor="let item of this.fetchDetail.empType" (change)="onEmploymentTypeChange($event)" [ngValue]="item.label"  >
                       {{item.label}}
                  </option>
                 </select>
@@ -27,15 +27,15 @@
 
             <div>
                 <label>Company Name</label>
-                <input type="text" class="form-control" name="companyName" [(ngModel)]="details.companyName">
+                <input type="text" class="form-control" name="companyName" ngModel   >
             </div>
 
             <div >
                 <h4>Job Location</h4>
                 <div >
                   <label>Country</label>
-                  <select  name="countryName" (click)="onSelectCountry(details.countryId)" [(ngModel)]="details.countryId" >
-                    <option  *ngFor="let item of this.fetchDetail.expcountry" (click)="onSelectCountry(item.id)" [ngValue]="item.id" >
+                  <select name="countryName" ngModal  (click)="onSelectCountry($event)">
+                    <option  *ngFor="let item of this.fetchDetail.expcountry"  [ngValue]="item.label" >
                     {{ item.label }}
                     </option>
                 </select>
@@ -43,8 +43,8 @@
 
                 <div>
                   <label>Governorate
-                  <select  name="governorateName" [(ngModel)]="details.governorateId" (click)="onSelectGovernates(details.governorateId)">
-                    <option *ngFor="let item of GovernateFromCountry" (click)="onSelectGovernates(item.id)" [ngValue]="item.id"> 
+                  <select  name="governorateName" ngModal (click)="onSelectGovernates($event)" >
+                    <option *ngFor="let item of GovernateFromCountry" [ngValue]="item.label"> 
                       {{item.label}}
                     </option>
                   </select>
@@ -53,7 +53,7 @@
 
                 <div>
                   <label>Wilayat
-                  <select  name="wilayatName" [(ngModel)]="details.wilayatId" (click)="onSelectWilayat(details.wilayatId)">
+                  <select  name="wilayatName" ngModel >
                     <option *ngFor="let item of wilayatFromGovernate" (click)="onSelectWilayat(item.id)" [ngValue]="item.id"> 
                       {{item.label}}
                     </option>
@@ -63,19 +63,23 @@
 
                 <div>
                   <label for="dob">Start Date
-                    <input type="date"  name="startDate"  ngModel="{{details.startDate|date:'yyyy-MM-dd' }}"  placeholder="select date">
+                    <input type="date"  name="startDate"  ngModel   placeholder="select date">
                 </label>
                 </div>
 
                 <div>
-                  <input name="presentJob" type="checkbox"  [(ngModel)]="theCheckbox" (change)="onChange($event)">Present on this job
-                  
+                  <input name="presentJob" type="checkbox"  [(ngModel)]="theCheckbox" (change)="onChange($event)">Present on this job 
                 </div>
 
                 <div [hidden]="theCheckbox == true">
                   <label for="dob">End Date
-                    <input type="date"  name="endDate"  ngModel="{{details.endDate|date:'yyyy-MM-dd' }}"  placeholder="select date">
+                    <input type="date"  name="endDate"  ngModel   placeholder="select date">
                 </label>
+                </div>
+
+                <div>
+                    <label>Job Description</label>
+                    <input type="text" name="jobDescription" ngModel>
                 </div>
 
                 

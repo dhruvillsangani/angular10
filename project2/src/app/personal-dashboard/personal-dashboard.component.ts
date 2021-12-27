@@ -6,7 +6,7 @@ import { EditModalComponent } from '../modal/edit-modal/edit-modal.component';
 import { LoginService } from '../shared/login.service';
 import { OnEditProfilSummaryComponent } from '../modal/on-edit-profil-summary/on-edit-profil-summary.component';
 import { OnEditExperienceModalComponent } from '../modal/on-edit-experience-modal/on-edit-experience-modal.component';
-
+import { AddExperienceModalComponent } from '../modal/add-experience-modal/add-experience-modal.component';
 @Component({
   selector: 'app-personal-dashboard',
   templateUrl: './personal-dashboard.component.html',
@@ -18,6 +18,7 @@ export class PersonalDashboardComponent implements OnInit {
   dateFrom: any;
   constructor(private http:HttpClient,public fetchdetails:FetchServiceService,public modelService: NgbModal,public loginService:LoginService) { }
   website:any;
+  presentJobs = 'Present';
 
 
   ngOnInit(): void {
@@ -48,7 +49,18 @@ export class PersonalDashboardComponent implements OnInit {
      modalref.componentInstance.ExperienceId = ExperienceId;  
      this.fetchdetails.experienceConuntry(); 
      this.fetchdetails.getExperienceGovernate();
-     this.fetchdetails.getEmployementType();     
+     this.fetchdetails.getEmployementType(); 
+     this.fetchdetails.getExperienceWilayat();    
   }
+
+  onAdd(){
+    this.modelService.open(AddExperienceModalComponent,{size: 'lg', backdrop: 'static'});
+    this.fetchdetails.experienceConuntry(); 
+    this.fetchdetails.getExperienceGovernate();
+    this.fetchdetails.getEmployementType(); 
+    this.fetchdetails.getExperienceWilayat(); 
+
   
+    }
+
 }

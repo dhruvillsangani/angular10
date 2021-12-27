@@ -18,6 +18,7 @@ import { EditModalComponent } from './modal/edit-modal/edit-modal.component';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { OnEditProfilSummaryComponent } from './modal/on-edit-profil-summary/on-edit-profil-summary.component';
 import { OnEditExperienceModalComponent } from './modal/on-edit-experience-modal/on-edit-experience-modal.component';
+import { AddExperienceModalComponent } from './modal/add-experience-modal/add-experience-modal.component';
 
 
 
@@ -40,6 +41,7 @@ const approutes: Routes = [
     EditModalComponent,
     OnEditProfilSummaryComponent,
     OnEditExperienceModalComponent,
+    AddExperienceModalComponent,
  
     
   ],

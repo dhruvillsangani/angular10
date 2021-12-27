@@ -78,7 +78,7 @@
                 border-width: 5px; margin-left: 335px; ">
 
                 <div class="tab-pane active">
-                    <button style=" color: cadetblue;"><i class="fa fa-plus"></i>ADD</button>
+                    <button style=" color: cadetblue;" (click)="onAdd()"><i class="fa fa-plus"></i>ADD</button>
                     <h3>Experience </h3>
                     <br>
                     <div [hidden]="elements.experienceProfile !== []">
@@ -91,9 +91,11 @@
                     </p>
                 </div>
 
-                <div style="color: rgb(82, 255, 197);" class="row mt-3 ng-star-inserted" *ngFor="let item of elements.experienceProfile">
+                <div style="color: rgb(0, 17, 255);" class="row mt-3 ng-star-inserted" *ngFor="let item of elements.experienceProfile">
                     <a (click)="onEditExperience(item.id)" > <i  class="fa fa-pencil" aria-hidden="true"></i></a>
-                    {{item.startDate|date: 'MM-yyyy'}}-{{item.endDate|date: 'MM-yyyy'}} &nbsp;&nbsp;&nbsp; {{item.jobTitle}}<br>
+                    {{item.startDate|date: 'MM-yyyy'}}-
+                    <div [hidden]="item.presentJob == false">{{presentJobs}}</div> 
+                    <div [hidden]="item.presentJob == true">{{item.endDate|date: 'MM-yyyy'}}</div> &nbsp;&nbsp;&nbsp; {{item.jobTitle}}<br>
                     {{item.employmentTypeName}} &nbsp;&nbsp;&nbsp;  {{item.companyName}},{{item.wilayatName}},{{item.countryName}}<br>
                     
                     
@@ -120,21 +122,3 @@
 
 <br><br><br>
 
-
-
-
-
-
-
-
-
-<!-- <div >
-        <ul class="side-nav">
-            <li class="border-top-0">
-                <a>MyProfile</a>
-            </li>
-            <li >
-                <a>My Jobs</a>
-            </li>
-        </ul>
-    </div> -->

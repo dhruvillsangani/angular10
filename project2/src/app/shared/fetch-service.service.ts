@@ -22,7 +22,7 @@ export class FetchServiceService {
   nationality:any
   empType:any
   Experiencegovernates:any;
-
+  expwilayat:any;
 
   fetchDetails(){
     for(let elements of this.tokens){
@@ -147,6 +147,14 @@ export class FetchServiceService {
     this.http.get('http://103.86.16.120:8086/pub/api/taxonomy/2/get-taxonomy/Governorates')
     .subscribe(Experiencegovernates=>{
       this.Experiencegovernates = Experiencegovernates;
+    })
+  }
+  getExperienceWilayat(){
+    this.http.get('http://103.86.16.120:8086/pub/api/taxonomy/2/get-taxonomy-by-parent/Governorates/253')
+    .subscribe(wilayates=>{
+      this.expwilayat = wilayates
+      console.log(this.expwilayat);
+      
     })
   }
 

@@ -8,9 +8,15 @@ export class LoginService {
   userName = ''
   password:any;
   isLoggedIn = false;
+  user: any;
   constructor(private router:Router,
     private route:ActivatedRoute) { }
-  
+    
+getToken(userDetails){
+  console.log(userDetails);
+  this.user =userDetails;
+}
+
 
   getLoginDetails(loginDetails){
  this.isLoggedIn = true;

@@ -79,11 +79,13 @@ export class EditModalComponent implements OnInit {
     this.activeModal.close('Save click');
     console.log(contactForm);
     this.fetchdetails.getEditModalDetails(contactForm);
-    this.http.put('http://103.86.16.120:8086/api/user-profile/2/update-user-profile',contactForm,{headers: new HttpHeaders().set('Authorization', 'Bearer yDAglGgio0cmoxUisVAXIS8HXds')})
+    this.http.put('http://103.86.16.120:8086/api/user-profile/2/update-user-profile',contactForm,{headers: new HttpHeaders().set('Authorization',`Bearer ${this.fetchdetails.token}` )})
     .subscribe(result =>{
       console.log(result);
       
     })
+    this.http.get('http://103.86.16.120:8086/api/user-profile/2/173/-1?isFromHistory=false&jobApplyId=0',{headers: new HttpHeaders().set('Authorization', `Bearer ${this.fetchdetails.token}`)}).subscribe(gt =>{})
+    // this.fetchdetails.fetchDetails();
     // this.fetchdetails.fetchDetails();
        this.fetchdetails.fetchImage();
   }
@@ -99,8 +101,10 @@ export class EditModalComponent implements OnInit {
     this.http.post('http://103.86.16.120:8086/api/file-info/upload',fd,{headers: new HttpHeaders().set('Authorization', 'Bearer yDAglGgio0cmoxUisVAXIS8HXds')})
     .subscribe(res =>{
       console.log(res);
-      
+      var result = [res];
+     this.fetchdetails.imageId = result
     });
+    this.fetchdetails.fetchImage();
 
   }
 

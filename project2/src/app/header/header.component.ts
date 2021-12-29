@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
 
     }
   ngOnInit(): void {
-    
+    this.fetchService.autoLogin();
   }
 
   onLogin(){

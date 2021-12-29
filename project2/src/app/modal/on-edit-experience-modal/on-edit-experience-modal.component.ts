@@ -22,6 +22,7 @@ export class OnEditExperienceModalComponent implements OnInit {
   theCheckbox = false;
 
   selected = false;
+  year: any;
   constructor(public modelService: NgbModal,public activeModal: NgbActiveModal,
     private http: HttpClient,public fetchDetail:FetchServiceService) { }
 
@@ -43,6 +44,15 @@ export class OnEditExperienceModalComponent implements OnInit {
     
     }
     
+  }
+  onDelete(){
+    console.log(this.ExperienceId);
+    
+this.http.delete(`http://103.86.16.120:8086/api/user-profile/2/delete-user-experience-status?id=${this.ExperienceId}&status=INACTIVE`,{headers: new HttpHeaders().set('Authorization', 'Bearer yDAglGgio0cmoxUisVAXIS8HXds')})
+.subscribe(result => {
+  console.log(result); 
+})
+
   }
   onSelectCountry(labelId){
       console.log(labelId);
@@ -77,7 +87,7 @@ export class OnEditExperienceModalComponent implements OnInit {
    
 
    
-    this.governorate = this.fetchDetail.Experiencegovernates.find(x => x.id ===experienceDetails.governorateName);
+    this.governorate = this.GovernateFromCountry.find(x => x.id ===experienceDetails.governorateName);
      experienceDetails.governorateName = this.governorate.label;
      experienceDetails.governorateId = this.governorate.id;
 
@@ -94,8 +104,37 @@ export class OnEditExperienceModalComponent implements OnInit {
     if(this.theCheckbox == true){
       experienceDetails.endDate = new Date().toISOString().split('T')[0];
     }
+    experienceDetails.area = {};
+    experienceDetails.areaId = null;
+    experienceDetails.areaName = null;
+    experienceDetails.createdBy = null;
+    experienceDetails.createdOn = null;
+    experienceDetails.draftProfileId  = -1;
+    experienceDetails.employmentType={};
+    //  this.year  =experienceDetails.startDate.getFullYear();
+    experienceDetails.experienceYear = (experienceDetails.startDate.split('-')[0]-experienceDetails.endDate.split('-')[0]);
 
-    console.log(experienceDetails);
+    experienceDetails.experienceMonth=(Math.abs(experienceDetails.startDate.split('-')[1]-experienceDetails.endDate.split('-')[1]));
+    experienceDetails.governorate = {};
+    experienceDetails.id = this.ExperienceId;
+    experienceDetails.modifiedBy=null;
+    experienceDetails.modifiedOn= null;
+  
+    experienceDetails.status = "ACTIVE"
+    experienceDetails.wilayat = {};
+    experienceDetails.userId = 173;
+    
+    // experienceDetails.experienceYear =experienceDetails.startDate.getFullYear()-experienceDetails.endDate.getFullYear();
+this.http.put('http://103.86.16.120:8086/api/user-profile/2/update-user-experience',experienceDetails,{headers: new HttpHeaders().set('Authorization', `Bearer ${this.fetchDetail.token}`)})
+.subscribe(result => {
+  console.log(result);
+  
+})
+this.http.get('http://103.86.16.120:8086/api/user-profile/2/173/-1?isFromHistory=false&jobApplyId=0',{headers: new HttpHeaders().set('Authorization', `Bearer ${this.fetchDetail.token}`)})
+.subscribe(result =>{
+ console.log(result); 
+})
+
     
   }
 }

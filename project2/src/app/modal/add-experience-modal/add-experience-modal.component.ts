@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpClientModule, HttpHeaders, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { FetchServiceService } from 'src/app/shared/fetch-service.service';
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-add-experience-modal',
   templateUrl: './add-experience-modal.component.html',
   styleUrls: ['./add-experience-modal.component.css']
 })
 export class AddExperienceModalComponent implements OnInit {
+  @Input()experienceId;
   GovernateFromCountry: any;
   wilayatFromGovernate: any;
   addForm = NgForm;
@@ -23,31 +25,23 @@ export class AddExperienceModalComponent implements OnInit {
   cLabel: any;
   GovernateDetails: any;
   GovernateId: any;
+ subject = new Subject<any>();
+
   constructor(public modelService: NgbModal,public activeModal: NgbActiveModal,
-    private http: HttpClient,public fetchDetail:FetchServiceService) { }
+              private http: HttpClient,public fetchDetail:FetchServiceService) { }
     
 
   ngOnInit(): void {
   
   }
+ 
   
-// onChanges(e){
-// console.log(e.target.value);
-// this.targetedCountry = e.target.value
-// //  this.countryDetails = this.fetchDetail.expcountry.find(e.label == e.target.value)
-// // console.log(this.countryDetails);
-// this.countryDetails = this.fetchDetail.expcountry.find(e =>e.label == e.target.value);
-// this.countryId = this.countryDetails.id;
-// // this.countryId = this.countryDetails.id;
-// // console.log(this.countryId);
-
-// }
 onSelectCountry(event){
   console.log(event.target.value);
 
-   this.countryDetails = this.fetchDetail.expcountry.find(e =>e.label == event.target.value);
-   this.countryId = this.countryDetails.id;
-  this.http.get(`http://103.86.16.120:8086/pub/api/taxonomy/2/get-taxonomy-by-parent/Countries/${this.countryId}`)
+    this.countryDetails = this.fetchDetail.expcountry.find(e =>e.label == event.target.value);
+    this.countryId = this.countryDetails.id;
+    this.http.get(`http://103.86.16.120:8086/pub/api/taxonomy/2/get-taxonomy-by-parent/Countries/${this.countryId}`)
     .subscribe(countryChange =>{
      this.GovernateFromCountry  = countryChange;
      console.log(this.GovernateFromCountry);
@@ -87,9 +81,27 @@ onSubmit(addForm){
   addForm.governorateId = this.GovernateId;
   addForm.userId = 173;
   addForm.wilayat = {};
+  if( this.theCheckbox == true){
+      addForm.endDate =  new Date().toISOString().split('T')[0];
+  }
   delete addForm.presentJob;
 console.log(addForm);
 
+this.http.put('http://103.86.16.120:8086/api/user-profile/2/update-user-experience',addForm,{headers: new HttpHeaders().set('Authorization', `Bearer ${this.fetchDetail.token}`)})
+.subscribe(result =>{
+ console.log(result); 
+})
+this.subject.next();
+
+
+this.http.get('http://103.86.16.120:8086/api/user-profile/2/173/-1?isFromHistory=false&jobApplyId=0',{headers: new HttpHeaders().set('Authorization', `Bearer ${this.fetchDetail.token}`)})
+.subscribe(result =>{
+ console.log(result); 
+})
+this.activeModal.close();
+this.subject.next();
 }
+
+
 
 }

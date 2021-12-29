@@ -53,7 +53,7 @@
 
                 <div>
                   <label>Wilayat
-                  <select  name="wilayatName" ngModel >
+                  <select  name="wilayatId" ngModel >
                     <option *ngFor="let item of wilayatFromGovernate" (click)="onSelectWilayat(item.id)" [ngValue]="item.id"> 
                       {{item.label}}
                     </option>

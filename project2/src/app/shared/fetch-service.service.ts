@@ -1,18 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../user.model';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class FetchServiceService {
+export class FetchServiceService implements OnInit {
   arr = [];
   tokens = [];
+  token:any;
   image:any;
   governatePosts: any;
   postOfficeCity: any;
   expcountry: any;
-  constructor(private http:HttpClient) { }
+  imageId:any;
   access_token:any;
   country:any;
   governates:any;
@@ -23,25 +26,46 @@ export class FetchServiceService {
   empType:any
   Experiencegovernates:any;
   expwilayat:any;
+currentUserDetails:any;
+subject = new Subject<any>();
+constructor(private http:HttpClient) { }
+  ngOnInit(): void {
+      
+  }
+getToken(token){
 
+  console.log(token.access_token);
+  console.log(this.currentUserDetails);
+  
+  this.token = token.access_token;
+  const user = new User(
+    this.token,
+    this.currentUserDetails
+  )
+localStorage.setItem('ALL_DATA',JSON.stringify(user))
+}
+
+autoLogin(){
+  let userData:{TOKEN:any,USER_DETAIL:any} = JSON.parse(localStorage.getItem('ALL_DATA'))
+  let loadedUser = new User(userData.TOKEN,userData.USER_DETAIL);
+  if(!loadedUser){
+    this.subject.next(loadedUser)
+  }
+  console.log(loadedUser)
+}
   fetchDetails(){
-    for(let elements of this.tokens){
-      this.access_token = elements.access_token;
-      console.log(this.access_token); 
-    }
-    this.http.get('http://103.86.16.120:8086/api/user-profile/2/173/-1?isFromHistory=false&jobApplyId=0',{headers: new HttpHeaders().set('Authorization', 'Bearer yDAglGgio0cmoxUisVAXIS8HXds')})
+ 
+    
+    this.http.get('http://103.86.16.120:8086/api/user-profile/2/173/-1?isFromHistory=false&jobApplyId=0',{headers: new HttpHeaders().set('Authorization', `Bearer ${this.token}`)})
     .subscribe(posts=>{
       this.arr.push(posts);
-      console.log(this.arr);
-     
-     
+      console.log(this.arr);   
     })
+    this.subject.next();
   }
 
   fetchImage(){
 
- console.log(this.imageID);
- 
 
     this.http.get(`http://103.86.16.120:8086/api/file-info/file/USER/${this.imageID}`,
     {headers: new HttpHeaders().set('Authorization', 'Bearer yDAglGgio0cmoxUisVAXIS8HXds'),
@@ -60,7 +84,7 @@ export class FetchServiceService {
        }
 
     })
-
+this.subject.next();
   }
 
 

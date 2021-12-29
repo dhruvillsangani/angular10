@@ -78,7 +78,10 @@
                 </label>
                 </div>
 
-                
+                <div>
+                  <label>Job Description</label>
+                  <input type="text" name="jobDescription" ngModel="{{details.jobDescription }}">
+              </div>
 
             </div>
 
@@ -86,6 +89,8 @@
           
 
   <div class="modal-footer">
+    <button   type="submit" class="btn btn-outline-dark" (click)="onDelete()">Delete</button>
+
     <button class="log-in" type="submit" class="btn btn-outline-dark" [disabled]="!contactForm.valid"> Save</button>
 
     <!-- <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button> -->

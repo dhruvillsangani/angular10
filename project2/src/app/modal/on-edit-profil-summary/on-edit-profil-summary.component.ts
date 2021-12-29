@@ -22,11 +22,16 @@ export class OnEditProfilSummaryComponent implements OnInit {
   }
   else {
    this.activeModal.close();
+   contactForm.createdBy = null
+   contactForm.createdOn = null
+   contactForm.modifiedBy = null
+   contactForm.modifiedOn = null
+   contactForm.id = 268
    contactForm.draftProfileId = -1;
    contactForm.userId = 171;
    console.log(contactForm);
  
-   this.http.put('http://103.86.16.120:8086/api/user-profile/2/update-profile-summary',contactForm,{headers: new HttpHeaders().set('Authorization', 'Bearer yDAglGgio0cmoxUisVAXIS8HXds')})
+   this.http.put('http://103.86.16.120:8086/api/user-profile/2/update-profile-summary',contactForm,{headers: new HttpHeaders().set('Authorization', `Bearer ${this.fetchDetail.token}`)})
    .subscribe(result =>{
     console.log(result); 
   })
